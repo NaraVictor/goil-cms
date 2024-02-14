@@ -1,2 +1,0 @@
-1. Google Chrome (chromium) CSP restriction of loading script error messages
-    -> added "content_security_policy": "script-src 'self' *; object-src 'self'" to manifest.json file
