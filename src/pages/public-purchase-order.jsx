@@ -16,7 +16,7 @@ const PublicPurchaseOrder = ( props ) => {
 					<p className="d-flex mt-3 mb-0">
 						<img src={ logo } style={ { maxWidth: '50px', maxHeight: '50px' } } className='d-block' alt="BokxPOS App logo" />
 						<div className="ms-2">
-							<h5 className='mb-0'>BokxPOS</h5>
+							<h5 className='mb-0'>Goil</h5>
 							<Copyright />
 						</div>
 					</p>

@@ -22,7 +22,7 @@ import { message } from 'antd'
 import { authenticate } from "../../helpers/auth";
 import axios from "axios";
 import logo from '../../static/img/logo.png';
-import shopSetupGIF from '../../static/gif/shop.gif';
+// import shopSetupGIF from '../../static/gif/shop.gif';
 
 //
 const SignUpPage = () => {
@@ -205,15 +205,8 @@ const SignUpPage = () => {
 								{ errMsg }
 							</Alert>
 						}
-						<Stepper color="teal" active={ active }
+						{/* <Stepper color="teal" active={ active }
 							breakpoint="sm" allowNextStepsSelect={ false }>
-							{/* <Stepper.Step
-								icon={ <span className="bi bi-receipt" /> }
-								label="Plan" description="confirm your plan">
-								<div className="my-3">
-									<PlanSetup />
-								</div>
-							</Stepper.Step> */}
 							<Stepper.Step
 								icon={ <span className="bi bi-shop" /> }
 								label="Shop" description="setup your shop">
@@ -221,13 +214,6 @@ const SignUpPage = () => {
 									<BusinessStep />
 								</div>
 							</Stepper.Step>
-							{/* <Stepper.Step
-								icon={ <span className="bi bi-collection" /> }
-								label="Industry" description="what do you sell">
-								<div className="my-3">
-									<CategoryStep />
-								</div>
-							</Stepper.Step> */}
 							<Stepper.Step
 								icon={ <span className="bi bi-person" /> }
 								label="User" description="admin signup">
@@ -241,7 +227,7 @@ const SignUpPage = () => {
 									<p><Loader size="sm" className="me-2" />Building your shop. Please wait...</p>
 								</div>
 							</Stepper.Completed>
-						</Stepper>
+						</Stepper> */}
 						{
 							active < 2 &&
 							<Group position="center" mt="xl" className="mb-3">

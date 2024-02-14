@@ -6,7 +6,7 @@ import { ROLES, getUser, logOut, refreshToken } from '../helpers/auth'
 import { IconLock, IconPower, IconSwitchHorizontal, IconUser } from '@tabler/icons-react'
 import { postAttendance, putAttendance, putLogout } from "../helpers/api";
 
-import logo from '../static/img/logo4.png'
+import logo from '../static/img/logo.png'
 import { maskEmail } from "../helpers/utilities";
 
 const ShortCuts = ( { className } ) => {

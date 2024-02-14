@@ -1,6 +1,6 @@
 import { atom } from "jotai";
 import { plans } from '../config'
-import codes from '../../plan-codes.json'
+// import codes from '../../plan-codes.json'
 
 
 // templates 
@@ -80,7 +80,8 @@ export const shopPlanAtom = atom(
         if ( plan.plan !== 'free' && plan.interval !== null ) {
 
             const planCost = plans?.find( pl => pl?.plan === plan?.plan )[ plan?.interval ];
-            const code = codes?.find( cd => ( ( cd?.plan === plan?.plan ) && ( cd?.interval === plan?.interval ) ) );
+            // const code = codes?.find( cd => ( ( cd?.plan === plan?.plan ) && ( cd?.interval === plan?.interval ) ) );
+            const code = "GHS"
 
             set( _plan, {
                 ...get( _plan ),
