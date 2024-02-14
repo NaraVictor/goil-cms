@@ -1,0 +1,163 @@
+// components
+@import "./scss/components/app-layout";
+@import "./scss/components/sale-box";
+@import "./scss/components/spinner";
+@import "./scss/shared/button";
+@import "./scss/shared/utilities";
+@import "./scss/components/nav";
+@import "./scss/components/components";
+
+* {
+  margin: 0;
+  box-sizing: content-box;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif, calibri;
+}
+
+// body {
+// 	background-color: #ddd !important;
+// 	min-height: 100% !important;
+
+// 	// overflow-x: hidden;
+// }
+
+// .active-setting {
+// 	border-left: 5px solid #999 !important;
+// 	padding-left: 10px !important;
+// 	font-weight: bold !important;
+// 	color: $primary-color !important;
+// }
+
+// .fill-window {
+// 	height: 100%;
+// 	position: absolute;
+// 	left: 0;
+// 	width: 100%;
+// 	overflow: hidden;
+// }
+
+.delete-item:hover {
+  color: red;
+  cursor: pointer;
+}
+
+// .category-selector-card {
+// 	cursor: pointer;
+
+// 	&:hover {
+// 		background-color: orange;
+// 	}
+// }
+
+// receipt
+.sale-receipt {
+  // @media print {
+  // @page {
+  // size: 2480px 3508px;
+  image-resolution: 300dpi;
+  font-size: 9pt;
+  // font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  // text-align: center;
+  // }
+  // }
+
+  .receipt-title {
+    font-weight: bold;
+  }
+
+  .receipt-footer {
+    background-color: #eee;
+  }
+
+  .mid-section {
+    border: 2px solid #999 !important;
+    background-color: #eee;
+    // width: 70%;
+    // padding: 10px;
+  }
+}
+
+.print-size-58 {
+  width: 170px !important;
+  // font-size: 8px !important;
+}
+
+.print-size-80 {
+  width: 200px !important;
+  // font-size: 9px !important;
+}
+
+// ant design
+.site-page-header {
+  border: 1px solid rgb(235, 237, 240);
+}
+
+.text-green {
+  color: $primary-color;
+}
+
+.bg-green {
+  background-color: $primary-color !important;
+}
+
+// electron specific
+.titlebar {
+  -webkit-user-select: none;
+  user-select: none;
+  -webkit-app-region: drag;
+}
+
+.pos-teller {
+  position: sticky;
+  top: 50;
+
+  .products-line {
+    max-height: 180px;
+    overflow: auto;
+    // overflow-y: scroll;
+    overflow-x: hidden;
+  }
+}
+
+.paystack-button {
+  cursor: pointer;
+  text-align: center;
+  font-size: 10px;
+  letter-spacing: 0.1rem;
+  text-transform: uppercase;
+  background-color: #41aa5e; //or their blue #00c3f7
+  font-weight: bolder;
+  color: #e0eafc;
+  border: none;
+  border-radius: 5px;
+  padding: 10px 15px;
+  // height: 45px;
+  // width: 100%;
+  // margin-top: 40px;
+
+  &:hover {
+    background-color: #047769;
+  }
+
+  &:focus {
+    outline: none;
+  }
+}
+
+// scrollbar
+
+// .body {
+// 	overflow-x: hidden;
+// }
+
+// body::-webkit-scrollbar {
+// 	width: 8px !important; /* width of the entire scrollbar */
+// }
+
+// body::-webkit-scrollbar-track {
+// 	background: #fff !important; /* color of the tracking area */
+// }
+
+// body::-webkit-scrollbar-thumb {
+// 	background-color: $primary-color !important; /* color of the scroll thumb */
+// 	border-radius: 5px !important; /* roundness of the scroll thumb */
+// }

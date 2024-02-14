@@ -1,0 +1,36 @@
+@import "./colors";
+
+@mixin btn {
+	padding: 8px 20px;
+	font-size: 1.1em;
+	text-decoration: none;
+	// border-radius: 20px;
+	border-radius: 5px;
+	border: 1px solid $primary-color;
+	background-color: $primary-color-washed;
+	// color: $primary-color;
+	transition: all 0.1s linear;
+
+	//TODO: temporarily apply styles when clicked
+}
+
+.bokx-btn {
+	@include btn();
+
+	&:hover {
+		// color: whitesmoke;
+		background-color: $primary-color-light !important;
+	}
+}
+
+.btn-prim {
+	@include btn();
+	background-color: $primary-color !important;
+	color: whitesmoke;
+
+	&:hover {
+		color: whitesmoke;
+		background-color: $primary-color-darker !important;
+		border: 1px solid $primary-color-darker;
+	}
+}

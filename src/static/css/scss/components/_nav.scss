@@ -1,0 +1,74 @@
+@import "../shared/colors";
+
+@mixin activeNav {
+  background-color: #ddd;
+  color: $primary-color !important;
+  font-weight: bold;
+}
+
+//mobile first design
+
+.primary-nav {
+  z-index: 100;
+  position: sticky;
+  top: 0;
+  background-color: white !important;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-direction: row;
+  height: 50px;
+
+  padding-right: 2vw;
+  padding-left: 2vw;
+
+  & .nav-logo {
+    background-color: whitesmoke !important;
+    display: inline;
+  }
+
+  & .nav-links {
+    width: 80vw;
+
+    & a {
+      padding: 9px;
+      margin-right: 5px;
+
+      & .bi {
+        margin-right: 0px;
+      }
+
+      color: #555;
+
+      &:hover {
+        @include activeNav();
+      }
+    }
+  }
+}
+
+// landscape upwards (desktop, tablet, wide screen etc)
+@media screen and (min-width: 600px) {
+  .primary-nav {
+    padding-right: 3vw;
+    padding-left: 3vw;
+
+    & .nav-links {
+      width: 70vw;
+
+      & a {
+        padding: 17px 17px 14px 17px;
+        color: #555;
+        margin-right: 0px;
+
+        & .bi {
+          margin-right: 5px;
+        }
+      }
+    }
+  }
+}
+
+.active-nav {
+  @include activeNav();
+}

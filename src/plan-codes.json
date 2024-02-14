@@ -1,0 +1,9 @@
+[
+  { "plan": "free", "interval": "monthly", "code": "00FREPLN_FR" },
+  { "plan": "basic", "interval": "monthly", "code": "112BSCPLN_BS" },
+  { "plan": "basic", "interval": "annually", "code": "1212BSCPLN_BS" },
+  { "plan": "standard", "interval": "monthly", "code": "112BSTDPLN_STD" },
+  { "plan": "standard", "interval": "annually", "code": "1212STDPLN_STD" },
+  { "plan": "professional", "interval": "monthly", "code": "112PROPLN_PRO" },
+  { "plan": "professional", "interval": "annually", "code": "1212PROPLN_PRO" }
+]

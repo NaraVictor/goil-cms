@@ -1,0 +1,162 @@
+@import "./colors";
+
+.bokx-color {
+  color: $primary-color !important;
+}
+
+.bokx-color-dark {
+  color: $primary-color-darker !important;
+}
+
+.bokx-bg-secondary {
+  background-color: #f0f2f5;
+}
+
+.bokx-bg {
+  background-color: $primary-color !important;
+  transition: all 0.2s linear;
+
+  &:hover {
+    background-color: $primary-color-darker !important;
+  }
+}
+
+.bokx-border {
+  border: 1px solid $primary-color !important;
+}
+
+.hover-hand {
+  &:hover {
+    cursor: pointer !important;
+    background-color: $secondary-color !important;
+  }
+}
+
+.hover {
+  &:hover {
+    cursor: pointer !important;
+  }
+}
+
+.page-title {
+  color: $primary-color !important;
+  font-weight: bold;
+  text-transform: uppercase;
+}
+
+// ant design steps component
+.ant-steps-item-icon,
+.ant-steps-icon {
+  // background: $primary-color !important;
+  color: whitesmoke !important;
+  // border-width: 0px !important;
+}
+
+.ant-steps-item-finish
+  > .ant-steps-item-container
+  > .ant-steps-item-content
+  > .ant-steps-item-title::after {
+  background-color: $primary-color !important;
+}
+
+.app-tile {
+  border: 1px solid #999;
+  border-radius: 5px;
+  text-align: center;
+
+  * {
+    color: #666 !important;
+  }
+}
+
+.summary-card {
+  border: 1px solid whitesmoke;
+  background-color: whitesmoke;
+  border-radius: 5px;
+  text-align: center;
+  transition: all 0.25s linear;
+
+  & .data {
+    color: $primary-color !important;
+  }
+
+  & .card-label {
+    color: #666 !important;
+    line-height: 18px !important;
+  }
+
+  & .stock-alert {
+    height: 3px;
+    min-width: 100%;
+  }
+
+  &:hover {
+    border-color: $primary-color;
+    cursor: pointer;
+  }
+}
+
+.card-danger {
+  animation: blinkRed 1s linear infinite;
+
+  .data,
+  .card-label {
+    color: whitesmoke !important;
+  }
+}
+
+.card-warning {
+  animation: blinkGold 2s linear infinite;
+
+  .data,
+  .card-label {
+    color: #333 !important;
+  }
+}
+
+.card-alert {
+  animation: blinkGreen 3s linear infinite;
+
+  .data,
+  .card-label {
+    color: #333 !important;
+  }
+}
+
+@keyframes blinkRed {
+  50% {
+    background-color: darkred;
+    color: whitesmoke !important;
+  }
+}
+@keyframes blinkGold {
+  50% {
+    background-color: goldenrod;
+  }
+}
+@keyframes blinkGreen {
+  50% {
+    background-color: $primary-color;
+  }
+}
+
+@mixin tileHover {
+  border-color: $primary-color;
+  background-color: $primary-color;
+
+  * {
+    color: #ccc !important;
+  }
+}
+
+.action-tile {
+  transition: all 0.25s linear;
+
+  &:hover {
+    @include tileHover();
+  }
+}
+
+.tile-active {
+  @include tileHover();
+}

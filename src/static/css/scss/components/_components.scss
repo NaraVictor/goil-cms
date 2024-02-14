@@ -1,0 +1,12 @@
+@import "../shared/colors";
+
+.pos-card {
+  border-radius: 5px;
+  // border: 1px solid $primary-color-darker;
+  background-color: $secondary-color;
+  padding: 4px;
+  // text-align: center;
+  cursor: pointer;
+  height: 80px !important;
+  overflow: hidden;
+}
