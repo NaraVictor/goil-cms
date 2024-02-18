@@ -1,13 +1,12 @@
 import Tile from "../../components/pages/tile";
-import { SectionHeader } from "../../components/shared";
+import { PageHeader } from "../../components/shared";
 import { Divider } from "antd";
 import { subnavs } from "../../helpers/config";
 
-const ReportsIndex = ( props ) =>
-{
+const ReportsIndex = ( props ) => {
     return (
         <section className="mt-3">
-            <SectionHeader className="my-4" title="Reporting" description="View organized summary of business and application information" />
+            <PageHeader className="my-4" title="Reporting" description="View organized summary of business and application information" />
             <Divider />
             <div className="row">
                 {

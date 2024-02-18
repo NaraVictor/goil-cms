@@ -117,21 +117,22 @@ export const isRegisterOpen = () => {
 // ROLES & PERMISSIONS
 export const ROLES = [
 	{
-		value: "shopowner",
-		label: 'Shop Owner'
-	},
-	{
-		value: "accounts",
-		label: 'Accounts'
-	},
-	{
-		value: "attendant",
-		label: 'Attendant'
+		value: "admin",
+		label: 'Admin'
 	},
 	{
 		value: "manager",
-		label: 'Manager'
+		label: 'Station Manager'
 	},
+	// {
+	// 	value: "accounts",
+	// 	label: 'Accounts'
+	// },
+	{
+		value: "attendant",
+		label: 'Pump Attendant'
+	},
+
 ];
 
 

@@ -102,9 +102,9 @@ const EditCustomerForm = ( { id, canEdit, showHeader = true, onClose, onUpdate, 
                     </div>
                 </div>
                 <div className="row">
-                    <div className="mb-3 col-12">
+                    <div className="col-md-6 mb-3 col-12">
                         <label htmlFor="contact">
-                            Contact
+                            Primary Contact
                             <RequiredIndicator />
                         </label>
                         <input
@@ -112,12 +112,11 @@ const EditCustomerForm = ( { id, canEdit, showHeader = true, onClose, onUpdate, 
                             maxLength={ 15 }
                             id="contact"
                             className="input"
-                            placeholder="contact"
+                            placeholder="primary contact"
                             { ...register( "contact", { required: true } ) }
                         />
-
                     </div>
-                    {/* <div className="col-md-6 mb-3 col-12">
+                    <div className="col-md-6 mb-3 col-12">
                         <label htmlFor="secondary_contact">Secondary Contact</label>
                         <input
                             type="tel"
@@ -127,7 +126,7 @@ const EditCustomerForm = ( { id, canEdit, showHeader = true, onClose, onUpdate, 
                             placeholder="secondary contact"
                             { ...register( "secondary_contact" ) }
                         />
-                    </div> */}
+                    </div>
                 </div>
                 <div className="row">
                     <div className="col-md-6 mb-3 col-12">

@@ -221,7 +221,7 @@ const UsersSetupPage = ( props ) => {
             </Modal>
             <PageHeader
                 title="Users"
-                description="View and edit all users with access to shop/outlets data, their roles, logs etc"
+                description="View and edit all users with access to station's data, their roles, logs etc"
                 metaData={ `${ users.length }` || '...' }
             />
             <div className="d-flex justify-content-between mb-3">
@@ -241,15 +241,15 @@ const UsersSetupPage = ( props ) => {
                     <button className="button bokx-btn"
                         onClick={ () => setModal( {
                             isOpen: true,
-                            title: 'Shop Logs',
+                            title: 'Station Logs',
                             content: <AllLogsComponent />,
                             size: 'lg'
                         } ) }
                     >
                         <span className="bi bi-file-binary me-2"></span>
-                        <span className="d-none d-md-inline me-1">
-                            Shop
-                        </span>
+                        {/* <span className="d-none d-md-inline me-1">
+                            Station
+                        </span> */}
                         Logs
                     </button>
                 </div>

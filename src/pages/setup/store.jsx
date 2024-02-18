@@ -20,7 +20,7 @@ const StoreSetupPage = ( props ) => {
     // queries
     const { data: shop = {}, isFetching, refetch } = useQuery( {
         queryFn: () => getShop( getUser().shop_id ),
-        queryKey: [ 'shop' ],
+        queryKey: [ 'station' ],
     } );
 
 
@@ -34,17 +34,17 @@ const StoreSetupPage = ( props ) => {
                 { modal.content }
             </Modal>
 
-            <PageHeader title="Shop" description="view and edit your shop information. Affects all related outlets" />
+            <PageHeader title="Station" description="view and edit your station information. Affects all related transactions" />
             <Divider className="my-3" />
             <button className="bokx-btn"
                 onClick={ () => setModal( {
                     isOpen: true,
-                    title: 'Update Shop',
+                    title: 'Update Station',
                     content: <EditShopComponent id={ shop.id } onUpdate={ refetch } />
                 } ) }
             >
                 <span className="bi bi-pencil me-2"></span>
-                Edit Shop
+                Edit Station
             </button>
 
             <Paper className="p-5 mt-3">
@@ -52,11 +52,7 @@ const StoreSetupPage = ( props ) => {
                     isFetching &&
                     <LinearProgress color="success" />
                 }
-                <DetailTile title="Shop Name" detail={ shop.shop_name } icon="shop" />
-                <Divider />
-                <DetailTile title="Industry" detail={ shop.category && toTitleCase( shop.category ) } icon="buildings" />
-                <Divider />
-                <DetailTile title="Offer Delivery Service" detail={ shop.has_delivery ? "YES" : "NO" } icon="truck" />
+                <DetailTile title="Station Name" detail={ shop.station_name } icon="shop" />
                 <Divider />
                 <DetailTile title="Contacts" detail={ <div>
                     <div>{ shop.primary_contact }</div>
@@ -67,17 +63,8 @@ const StoreSetupPage = ( props ) => {
                 <Divider />
                 <DetailTile title="Address" detail={ shop.address } icon="geo" />
                 <Divider />
-                {/* <DetailTile title="VAT" detail={ shop.vat } icon="file-ruled" />
-                <Divider /> */}
-                <DetailTile title="TIN" detail={ shop.tin } icon="123" />
-                <Divider />
                 <DetailTile title="GPS Address" detail={ shop.gps_address } icon="globe-americas" />
-                <Divider />
-                <DetailTile title="Base Currency" detail={ `${ findCurrency( shop.base_currency )?.name } (${ findCurrency( shop.base_currency )?.symbol })` } icon="currency-exchange" />
-                <Divider />
-                <DetailTile title="MoMo Number" detail={ shop.momo_number } icon="phone" />
-                <Divider />
-                <DetailTile title="Website" detail={ shop.website } icon="globe" />
+
             </Paper>
 
         </section>

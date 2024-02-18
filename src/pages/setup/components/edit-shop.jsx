@@ -13,7 +13,7 @@ export default function EditShopComponent ( { id, onUpdate } ) {
 
     useQuery( {
         queryFn: () => getShop( id ),
-        queryKey: [ 'shop', id ],
+        queryKey: [ 'station', id ],
         onSuccess: data => setState( data )
     } );
 
@@ -59,22 +59,22 @@ export default function EditShopComponent ( { id, onUpdate } ) {
                         mutateAsync( state )
                     } }>
                         <div className='field'>
-                            <label htmlFor="shop_name">
-                                Shop Name
+                            <label htmlFor="station_name">
+                                Station Name
                                 <RequiredIndicator />
                             </label>
                             <input
                                 type="text"
-                                id='shop_name'
+                                id='station_name'
                                 autoFocus
                                 required
-                                value={ state.shop_name }
+                                value={ state.station_name }
                                 onChange={ ( e ) => setState( {
                                     ...state,
-                                    shop_name: e.target.value
+                                    station_name: e.target.value
                                 } ) }
                                 className="input w-100"
-                                placeholder='shop name'
+                                placeholder='station name'
                             />
                         </div>
                         <div className="row field">
@@ -137,7 +137,7 @@ export default function EditShopComponent ( { id, onUpdate } ) {
                             />
                         </div>
                         <div className="row field">
-                            <div className='col-md-6 col-12 field'>
+                            {/* <div className='col-md-6 col-12 field'>
                                 <label htmlFor="tin">
                                     TIN
                                 </label>
@@ -152,8 +152,8 @@ export default function EditShopComponent ( { id, onUpdate } ) {
                                     className="input w-100"
                                     placeholder='tin number'
                                 />
-                            </div>
-                            <div className='col-md-6 col-12 field'>
+                            </div> */}
+                            <div className='col-12 field'>
                                 <label htmlFor="gps_address">
                                     GPS Address
                                 </label>
@@ -170,7 +170,7 @@ export default function EditShopComponent ( { id, onUpdate } ) {
                                 />
                             </div>
                         </div>
-                        <div className="row field">
+                        {/* <div className="row field">
                             <div className='col-md-6 col-12 field'>
                                 <label htmlFor="base_currency">
                                     Base Currency
@@ -214,9 +214,9 @@ export default function EditShopComponent ( { id, onUpdate } ) {
                                     placeholder='mobile money number'
                                 />
                             </div>
-                        </div>
+                        </div> */}
 
-                        <div className='field'>
+                        {/* <div className='field'>
                             <label htmlFor="website">
                                 Website
                             </label>
@@ -231,7 +231,7 @@ export default function EditShopComponent ( { id, onUpdate } ) {
                                 className="input w-100"
                                 placeholder='shop website here'
                             />
-                        </div>
+                        </div> */}
 
                         <button
                             className={ `button btn-prim mt-3 ${ isLoading && ' is-loading' }` } type="submit"            >

@@ -54,7 +54,7 @@ const GeneralSetupPage = ( props ) => {
 
     const handleUpdateSettings = () =>
         smalltalk.confirm(
-            "Update Settings", "You are about to change your shop configurations. Continue?", {
+            "Update Settings", "You are about to change your station configurations. Continue?", {
             buttons: {
                 ok: 'YES',
                 cancel: 'NO',
@@ -81,8 +81,9 @@ const GeneralSetupPage = ( props ) => {
             {/* <Divider /> */ }
 
             <Paper className="p-5 mt-3">
-                { isFetching && <LinearProgress color="success" className="mb-2" /> }
-                <DetailTile title="Purchase Order Category"
+                { isFetching && <LinearProgress color="warning" className="mb-2" /> }
+                <span><i>settings here</i></span>
+                {/* <DetailTile title="Purchase Order Category"
                     detail={
                         <Select
                             value={ state?.expense_category_id }
@@ -118,11 +119,7 @@ const GeneralSetupPage = ( props ) => {
                             { state?.add_purchase_order_expense ? "YES" : "NO" }
                         </>
                     } icon="check2-circle" />
-                <Divider />
-                {/* <div>
-                    <li>send email / sms to supplier after creating purchase order</li>
-                    <li>send email / sms to supplier after creating purchase order</li>
-                </div> */}
+                <Divider /> */}
             </Paper>
         </section>
     );

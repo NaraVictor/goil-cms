@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import { authenticate, setRole } from "../../helpers/auth";
-// import logo from "../../static/img/logo.png";
 import PageTitle from '../../components/page-title'
 import { appLinks } from "../../helpers/config";
 import { Divider, message } from "antd";
@@ -21,38 +20,13 @@ const LoginPage = ( props ) => {
 
 	const navigate = useNavigate();
 
-
 	const { mutateAsync, isLoading } = useMutation( ( data ) => postLogin( data ), {
 		onSuccess: ( data, variables, context ) => {
 			if ( data.status === 201 ) {
 				authenticate(
-					'randomeomsdnuasdsadoernc80123o1n₭zxc9j401-1249324mkmsd',
-					{
-						id: '4ee324b3-4dd5-44ba-82f6-5563ee5365cd',
-						email: 'dan@email.com',
-						role: 'superuser',
-						staff_id: '63e1a2fa-ab8d-405a-a200-083ac6884dd4',
-						staff_name: 'Daniel Adjei',
-						shop_id: '331e0639-1102-4fa1-8876-b2f41281aad9',
-						attendance_id: 'ab5f99ac-7f2c-4030-b38c-f407a98f66cd',
-						shop_name: 'Goil Station',
-						currency: 'GHS',
-						country: 'Ghana',
-						outlets: [ 'af402d38-e2c9-4f17-a0a4-d228ee3cddd2', '5aea418d-9a02-480d-8c9f-7e264e164d63' ],
-						outlet_id: '5aea418d-9a02-480d-8c9f-7e264e164d63',
-
-						register: {
-							id: 'f7af76ff-bdd5-4080-8742-abb83f865b1d',
-							register_name: 'Main',
-							sequence_id: '2938bd35-102b-4521-9b44-f8f65c95b23f',
-							sequence_name: 'Seq00001'
-						}
-					}
+					data.data.token,
+					data.data.user
 				);
-				// authenticate(
-				// 	data.data.token,
-				// 	data.data.user
-				// );
 				navigate( appLinks.home, { replace: true } );
 				return
 			}
@@ -70,10 +44,8 @@ const LoginPage = ( props ) => {
 				setErrMsg( 'login error' );
 			}
 			else {
-				// message.error( err );
 				setErrMsg( err );
 			}
-
 		},
 	} );
 
@@ -86,10 +58,10 @@ const LoginPage = ( props ) => {
 					<div className="">
 						<div className="text-center">
 							<div className="mt-3">
-								<img src={ logo } width={ 200 } alt="Goil App logo" />
+								<img src={ logo } width={ 100 } alt="Goil App logo" />
 							</div>
-							<h5>Login</h5>
-							{/* <p className="text-secondary">provide your credentials to proceed</p> */ }
+							<h5 className="mb-0 mt-3">Login</h5>
+							<p className="text-secondary">provide your credentials to proceed</p>
 						</div>
 						{ errMsg && (
 							<Alert
@@ -99,7 +71,6 @@ const LoginPage = ( props ) => {
 							</Alert>
 						) }
 						<form onSubmit={ handleSubmit( data => {
-
 							// mutateAsync( { ...data, version: process.env.REACT_APP_VERSION } )
 							authenticate(
 								'randomeomsdnuasdsadoernc80123o1n₭zxc9j401-1249324mkmsd',
@@ -169,15 +140,15 @@ const LoginPage = ( props ) => {
 								</div >
 							</Paper>
 						</form >
-						<div className="px-3 mt-3 row">
+						<div className="px-3 my-3 row">
 							<div className="d-flex justify-content-between">
 								<Link to={ appLinks.resetpassword }>Reset Password</Link>
-								<Link to={ appLinks.signup }> <strong>Signup</strong>	</Link>
+								{/* <Link to={ appLinks.signup }> <strong>Signup</strong>	</Link> */ }
 							</div>
-							<Divider />
-							<p className="mb-1">Having challenges?
+							<Divider className="my-1" />
+							{/* <p className="mb-1">Having challenges?
 								<Link to="/"> Get help</Link>
-							</p>
+							</p> */}
 							<small>
 								<Copyright />
 							</small>

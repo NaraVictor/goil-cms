@@ -8,8 +8,6 @@ import { getAllCategories, postNewCustomer } from '../../../helpers/api';
 
 import NewCustomerTypeForm from './new-customer-group'
 import { Modal } from '@mantine/core';
-import PhoneInput from "react-phone-number-input";
-import flags from 'react-phone-number-input/flags'
 
 const NewCustomerForm = ( { showFooter, onSuccess, showHeader = true, onClose } ) => {
 
@@ -124,24 +122,11 @@ const NewCustomerForm = ( { showFooter, onSuccess, showHeader = true, onClose } 
                             { ...register( "customer_name", { required: true } ) }
                         />
                     </div>
-                    {/* <div className="col-md-6 mb-3 col-12">
-                        <label htmlFor="last_name">
-                            Last Name
-                            <RequiredIndicator />
-                        </label>
-                        <input
-                            type="text"
-                            id="last_name"
-                            className="input"
-                            placeholder="last name"
-                            { ...register( "last_name", { required: true } ) }
-                        />
-                    </div> */}
                 </div>
                 <div className="row">
-                    <div className="mb-3 col-12">
+                    <div className="col-md-6 mb-3 col-12">
                         <label htmlFor="contact">
-                            Contact
+                            Primary Contact
                             <RequiredIndicator />
                         </label>
                         <input
@@ -149,19 +134,11 @@ const NewCustomerForm = ( { showFooter, onSuccess, showHeader = true, onClose } 
                             maxLength={ 15 }
                             id="contact"
                             className="input"
-                            placeholder="customer contact"
+                            placeholder="primary contact"
                             { ...register( "contact", { required: true } ) }
                         />
-                        <PhoneInput
-                            defaultCountry='GH'
-                            autoComplete='true'
-                            flags={ flags }
-                            value={ value }
-                            onChange={ handlePhoneChange }
-                            onCountryChange={ handleCountryChange }
-                        />
                     </div>
-                    {/* <div className="col-md-6 mb-3 col-12">
+                    <div className="col-md-6 mb-3 col-12">
                         <label htmlFor="secondary_contact">Secondary Contact</label>
                         <input
                             type="tel"
@@ -171,7 +148,7 @@ const NewCustomerForm = ( { showFooter, onSuccess, showHeader = true, onClose } 
                             placeholder="secondary contact"
                             { ...register( "secondary_contact" ) }
                         />
-                    </div> */}
+                    </div>
                 </div>
                 <div className="row">
                     <div className="col-md-6 mb-3 col-12">

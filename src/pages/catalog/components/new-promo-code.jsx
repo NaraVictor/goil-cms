@@ -1,5 +1,4 @@
-const NewPromoCodeForm = ( props ) =>
-{
+const NewPromoCodeForm = ( props ) => {
     return (
         <div>
             <form>

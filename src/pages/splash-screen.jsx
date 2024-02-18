@@ -49,7 +49,7 @@ const SplashScreen = ( props ) => {
                 <img src={ logo } alt="app logo" width={ 80 } />
                 <div className="mt-5 progress-area">
                     {/* <p className="mt-1 mb-0">Please wait</p> */ }
-                    <Progress percent={ percentage } type="circle" strokeColor="#047769" />
+                    <Progress percent={ percentage } type="circle" strokeColor="#ea5b0c" />
                     <p className="mt-3">{ activities[ step ] }</p>
                 </div>
             </div>

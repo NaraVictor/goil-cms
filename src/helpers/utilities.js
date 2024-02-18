@@ -151,6 +151,10 @@ export const isElectron = () => {
  */
 export const generateRoute = ( paths ) => {
 	let path = "";
+
+	if ( _.isEmpty( path ) )
+		return ""
+
 	paths.map( ( p ) => {
 		path += "/" + p.trim().replace( "/", "" );
 	} );

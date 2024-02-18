@@ -161,6 +161,30 @@ export const deleteSalePayment = async ( id ) => {
 };
 
 
+// CAMPAIGNS
+export const getCampaign = async ( id ) => {
+	const qry = await fetchQuery( `campaigns/${ id }` );
+	return qry?.data?.data;
+};
+
+export const getAllCampaigns = async ( isLight ) => {
+	const qry = await fetchQuery( `campaigns${ isLight ? '?light=true' : '' }` );
+	return qry?.data?.data;
+};
+
+export const postNewCampaign = async ( data ) => {
+	return await postQuery( "campaigns", data );
+};
+
+export const putCampaign = async ( data ) => {
+	return await updateQuery( `campaigns`, data );
+};
+
+export const deleteCampaign = async ( id ) => {
+	return await deleteQuery( `campaigns/${ id }` );
+};
+
+
 
 // REGISTERS
 export const getRegister = async ( id ) => {
@@ -577,8 +601,6 @@ export const getLogs = async ( user_id, shop_id ) => {
 	const qry = await fetchQuery( `accounts/logs?user=${ user_id }&shop=${ shop_id }` );
 	return qry.data.data;
 };
-
-
 
 
 // MISC 

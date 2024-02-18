@@ -9,7 +9,7 @@ import { getUser } from "../../helpers/auth";
 const Tile = ( { title, icon, url, className, isLink = true, isAction = false, isActive = false, onClick } ) => {
     const content = (
         <div className="py-4">
-            <span className={ `h5 bi ${ icon } mb-3` }></span>
+            <span className={ `h5 bi ${ icon }` }></span>
             <p className="m-0">{ title }</p>
         </div>
     )
@@ -27,6 +27,21 @@ const Tile = ( { title, icon, url, className, isLink = true, isAction = false, i
                         { content }
                     </>
             }
+        </div >
+    );
+}
+
+export const SellCard = ( { title, icon, className, isLink = true, isAction = false, isActive = false, onClick } ) => {
+    return (
+        <div
+            onClick={ onClick }
+            className={ `app-tile ${ isAction && ' action-tile ' } ${ isActive && 'tile-active' } ${ className }` }>
+            <Link to={ url || "#" } >
+                <div className="py-4">
+                    <span className={ `h5 bi ${ icon }` }></span>
+                    <p className="m-0">{ title }</p>
+                </div>
+            </Link>
         </div >
     );
 }

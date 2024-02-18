@@ -28,41 +28,40 @@ const ShortCuts = ( { className } ) => {
 
 const PrimaryNav = ( props ) => {
     const nav = useNavigate()
-    const user = getUser()
-    const handleMarkAttendance = () => {
+    // const user = getUser()
 
-        const a_id = getUser().attendance_id
-        if ( a_id !== null )
-            postAttendance().then( res => {
-                console.log( res );
-                if ( res.response.status === 201 ) {
-                    message.success( 'you are clocked-in!' )
-                    refreshToken()
-                    return
-                }
+    // const handleMarkAttendance = () => {
+    //     const a_id = getUser().attendance_id
+    //     if ( a_id !== null )
+    //         postAttendance().then( res => {
+    //             console.log( res );
+    //             if ( res.response.status === 201 ) {
+    //                 message.success( 'you are clocked-in!' )
+    //                 refreshToken()
+    //                 return
+    //             }
 
-                message.error( 'error clocking you in!' )
-            } )
-        else
-            putAttendance( a_id ).then( res => {
-                if ( res.response.status === 200 ) {
-                    message.success( 'you are clocked-out' )
-                    refreshToken()
-                    return
-                }
+    //             message.error( 'error clocking you in!' )
+    //         } )
+    //     else
+    //         putAttendance( a_id ).then( res => {
+    //             if ( res.response.status === 200 ) {
+    //                 message.success( 'you are clocked-out' )
+    //                 refreshToken()
+    //                 return
+    //             }
 
-                message.error( 'error clocking you out!' )
+    //             message.error( 'error clocking you out!' )
 
-            } )
-
-    }
+    //         } )
+    // }
 
     return (
-        <nav className="shadow primary-nav">
-            <Link to={ appLinks.home } className="logo">
-                <img src={ logo } width={ 100 } alt="BokxPOS App logo" />
+        <nav className="px-md-5 primary-nav">
+            <Link to={ appLinks.home } className="">
+                <img src={ logo } width={ 50 } alt="Goil App logo" />
             </Link>
-            <div className="nav-links text-md-start text-center">
+            <div className="nav-links">
                 <NavLink
                     className={ ( props ) => {
                         return `${ props.isActive ? 'active-nav ' : '' }`;
@@ -70,11 +69,11 @@ const PrimaryNav = ( props ) => {
                     end
                     to={ appLinks.home }>
                     <span className="h5 bi bi-house"></span>
-                    <span className="d-none d-md-inline-block">
-                        Home
-                    </span>
+                    {/* <span className="d-none d-md-inline-block"> */ }
+                    Home
+                    {/* </span> */ }
                 </NavLink>
-                <NavLink
+                {/* <NavLink
                     className={ ( props ) => {
                         return `${ props.isActive ? 'active-nav ' : '' }`;
                     } }
@@ -84,7 +83,7 @@ const PrimaryNav = ( props ) => {
                     <span className="d-none d-md-inline-block">
                         Sale
                     </span>
-                </NavLink>
+                </NavLink> */}
                 <NavLink
                     className={ ( props ) => {
                         return `${ props.isActive ? 'active-nav ' : '' }`;
@@ -92,11 +91,11 @@ const PrimaryNav = ( props ) => {
                     end
                     to={ appLinks.catalog.index }>
                     <span className="h5 bi bi-stack"></span>
-                    <span className="d-none d-md-inline-block">
-                        Catalog
-                    </span>
+                    {/* <span className="d-none d-md-inline-block"> */ }
+                    Catalog
+                    {/* </span> */ }
                 </NavLink>
-                <NavLink
+                {/* <NavLink
                     className={ ( props ) => {
                         return `${ props.isActive ? 'active-nav ' : '' }`;
                     } }
@@ -106,7 +105,7 @@ const PrimaryNav = ( props ) => {
                     <span className="d-none d-md-inline-block">
                         Reporting
                     </span>
-                </NavLink>
+                </NavLink> */}
                 <NavLink
                     className={ ( props ) => {
                         return `${ props.isActive ? 'active-nav ' : '' }`;
@@ -114,9 +113,9 @@ const PrimaryNav = ( props ) => {
                     end
                     to={ appLinks.setup.index } >
                     <span className="h5 bi bi-gear"></span>
-                    <span className="d-none d-md-inline-block">
-                        Setup
-                    </span>
+                    {/* <span className="d-none d-md-inline-block"> */ }
+                    Setup
+                    {/* </span> */ }
                 </NavLink>
             </div>
 
@@ -130,7 +129,8 @@ const PrimaryNav = ( props ) => {
                 <Menu>
                     <Menu.Target>
                         <div>
-                            <strong className="me-2 d-none d-md-inline">{ user.staff_name }</strong>
+                            <strong className="me-2 d-none d-md-inline">Staff Name</strong>
+                            {/* <strong className="me-2 d-none d-md-inline">{ user.staff_name }</strong> */ }
                             <Avatar className="hover-hand">
                                 <IconUser />
                             </Avatar>
@@ -138,14 +138,19 @@ const PrimaryNav = ( props ) => {
                     </Menu.Target>
 
                     <Menu.Dropdown>
-                        {/* <Menu.Label>User</Menu.Label> */ }
+                        <Menu.Label>User</Menu.Label>
                         <div className="p-2">
-                            <strong className="d-sm-none">{ user.staff_name }</strong>
+                            <strong className="d-sm-none">
+                                Staff Name
+                                {/* { user.staff_name } */ }
+                            </strong>
                             <div className="text-muted">
-                                <i className="d-block">{ maskEmail( user?.email ) }</i>
-                                <Tag>{ ROLES.find( rl => rl.value === user?.role )?.label }</Tag>
+                                <i className="d-block">email@email.com</i>
+                                {/* <i className="d-block">{ maskEmail( user?.email ) }</i> */ }
+                                <Tag>role</Tag>
+                                {/* <Tag>{ ROLES.find( rl => rl.value === user?.role )?.label }</Tag> */ }
                             </div>
-                            <button className="mt-3 button"
+                            {/* <button className="mt-3 button"
                                 onClick={ handleMarkAttendance }
                             >
                                 <span className="bi bi-person-check me-2" />
@@ -153,8 +158,9 @@ const PrimaryNav = ( props ) => {
                                     getUser().attendance_id ?
                                         'Clock-out' : 'Clock-in'
                                 }
-                            </button>
+                            </button> */}
                         </div>
+                        {/* 
                         <Menu.Divider />
                         <Menu.Label pb={ 0 }>Outlet</Menu.Label>
                         <Menu.Item
@@ -163,18 +169,19 @@ const PrimaryNav = ( props ) => {
                             mb={ 5 }
                         >
                             <strong className="d-block text-success">
-                                { user.outlets.find( out => out.id === user.outlet_id ).outlet_name }
-                            </strong>
-                            <Tag>
-                                <span className="bi bi-shop me-1"></span>
-                                { user.shop_name }</Tag>
-                        </Menu.Item>
-                        <Menu.Item
+                            { user.outlets.find( out => out.id === user.outlet_id ).outlet_name } 
+                    </strong>
+                    <Tag>
+                        <span className="bi bi-shop me-1"></span>
+                        { user.shop_name }
+                    </Tag>
+                </Menu.Item> */}
+                        {/* <Menu.Item
                             py={ 6 }
                             onClick={ () => nav( appLinks.switchOutlet ) }
                             icon={ <IconSwitchHorizontal size={ 20 } /> }>
                             Switch Outlet
-                        </Menu.Item>
+                        </Menu.Item> */}
                         <Menu.Divider />
                         <Menu.Label>Security</Menu.Label>
                         {/* <Menu.Item
@@ -206,7 +213,7 @@ const PrimaryNav = ( props ) => {
                         </Menu.Item>
                     </Menu.Dropdown>
                 </Menu >
-            </div>
+            </div >
         </nav >
     );
 }

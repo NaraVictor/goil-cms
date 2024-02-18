@@ -14,7 +14,7 @@ const AppLayout = () => {
 
 
     useEffect( () => {
-        !isAuthenticated() && nav( appLinks.login, { replace: false } )
+        // !isAuthenticated() && nav( appLinks.login, { replace: false } )
 
         if ( isOnline ) {
             setOpen( true )
@@ -25,7 +25,7 @@ const AppLayout = () => {
     return (
         <>
             {
-                isAuthenticated() &&
+                // isAuthenticated() &&
                 <div className='app-layout'>
                     {
                         isOnline &&
@@ -41,12 +41,6 @@ const AppLayout = () => {
                             </Alert>
                         </Snackbar>
                     }
-                    {/* <div className="sticky-top bg-dark text-center text-white py-1">
-                        The production version will be live on October 1st, 2023.
-                        <a href='https://forms.gle/5BnZNBa6tzBo2wAu7' target='_blank' className='ms-2 text-warning'>Click here to join the waiting list </a> <span className="px-2">or</span>
-                        <a href='https://forms.gle/hicA31MnzPBbZChd8' target='_blank' className='text-warning'>here to submit feedback </a>
-                    </div> */}
-                    {/* <SecondaryNav /> */ }
                     <PrimaryNav />
                     <div className="layout-outlet">
                         <div className="row">

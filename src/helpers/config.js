@@ -63,11 +63,11 @@ export const appLinks = {
 	sales: {
 		index: "/sale",
 		sell: "sell",
-		register: "register",
+		// register: "register",
 		settings: "sale-settings",
 		status: "sale-status",
 		history: "sale-history",
-		cashMagt: "cash-management",
+		// cashMagt: "cash-management",
 	},
 
 	// catalog
@@ -79,7 +79,7 @@ export const appLinks = {
 		customersGroups: "customer-groups",
 		expenses: "expenses",
 		suppliers: "suppliers",
-		promotions: "promotions",
+		campaign: "campaigns",
 		orders: "orders",
 		stockControl: "stock-control",
 		inventoryCount: "inventory-count",
@@ -117,11 +117,11 @@ export const appLinks = {
 		loyalty: "loyalty",
 		business: "business",
 		apps: "apps",
-		shop: "shop", //updated from store
+		station: "station", //updated from branch
 	},
 
 	// logs: "/activity-logs",
-	publicPurchaseOrder: ( orderNumber, publicUrl ) => `/po/${ orderNumber }/${ publicUrl }`, //po stands for purchase order
+	customerPortal: ( orderNumber, publicUrl ) => `/cp/${ orderNumber }/${ publicUrl }`, //cp stands for customer portal
 	switchOutlet: "/switch-outlet",
 
 	// auth
@@ -206,12 +206,12 @@ export const subnavs = {
 			info: 'brief description here',
 			url: appLinks.sales.sell,
 		},
-		{
-			name: "register",
-			icon: "bi-subtract",
-			info: 'brief description here',
-			url: appLinks.sales.register,
-		},
+		// {
+		// 	name: "register",
+		// 	icon: "bi-subtract",
+		// 	info: 'brief description here',
+		// 	url: appLinks.sales.register,
+		// },
 		{
 			name: "sales history",
 			icon: "bi-clock-history",
@@ -239,10 +239,23 @@ export const subnavs = {
 	],
 	catalog: [
 		{
+			name: "sales history",
+			icon: "bi-clock-history",
+			info: 'brief description here',
+			url: `${ appLinks.sales.index }/${ appLinks.sales.history }`,
+
+		},
+		{
 			name: "inventory",
-			icon: "bi-box-seam",
+			icon: "bi-box",
 			info: 'brief description here',
 			url: appLinks.catalog.inventory,
+		},
+		{
+			name: "campaigns",
+			icon: "bi-gift",//"bi-megaphone",
+			info: 'brief description here',
+			url: appLinks.catalog.campaign,
 		},
 		// {
 		// 	name: "products types",
@@ -257,36 +270,42 @@ export const subnavs = {
 			info: 'brief description here',
 			url: appLinks.catalog.customers,
 		},
+		{
+			name: "claims",
+			icon: "bi-card-checklist",
+			info: 'brief description here',
+			url: '#',//appLinks.catalog.customers,
+		},
+		{
+			name: "reports",
+			icon: "bi-bar-chart",
+			info: 'brief description here',
+			url: appLinks.reports.index,
+		},
 		// {
-		// 	name: "customer groups",
-		// 	icon: "bi-person-lines-fill",
-		// info: 'brief description here',
-		// 	url: appLinks.catalog.customersGroups,
+		// 	name: "expenses",
+		// 	icon: "bi-wallet",
+		// 	info: 'brief description here',
+		// 	url: appLinks.catalog.expenses,
 		// },
-		{
-			name: "expenses",
-			icon: "bi-wallet",
-			info: 'brief description here',
-			url: appLinks.catalog.expenses,
-		},
-		{
-			name: "suppliers",
-			icon: "bi-briefcase",
-			info: 'brief description here',
-			url: appLinks.catalog.suppliers,
-		},
-		{
-			name: "categories",
-			icon: "bi-boxes",
-			info: 'brief description here',
-			url: appLinks.catalog.categories,
-		},
-		{
-			name: "charges",
-			icon: "bi-wrench-adjustable-circle",
-			info: 'brief description here',
-			url: appLinks.catalog.charges,
-		},
+		// {
+		// 	name: "suppliers",
+		// 	icon: "bi-briefcase",
+		// 	info: 'brief description here',
+		// 	url: appLinks.catalog.suppliers,
+		// },
+		// {
+		// 	name: "categories",
+		// 	icon: "bi-boxes",
+		// 	info: 'brief description here',
+		// 	url: appLinks.catalog.categories,
+		// },
+		// {
+		// 	name: "charges",
+		// 	icon: "bi-wrench-adjustable-circle",
+		// 	info: 'brief description here',
+		// 	url: appLinks.catalog.charges,
+		// },
 		// {
 		// 	name: "promotions",
 		// 	icon: "bi-gift",
@@ -311,12 +330,12 @@ export const subnavs = {
 		// info: 'brief description here',
 		// 	url: appLinks.catalog.inventoryCount,
 		// },
-		{
-			name: "restocks",
-			icon: "bi-recycle",
-			info: 'brief description here',
-			url: appLinks.catalog.restocks,
-		},
+		// {
+		// 	name: "restocks",
+		// 	icon: "bi-recycle",
+		// 	info: 'brief description here',
+		// 	url: appLinks.catalog.restocks,
+		// },
 	],
 	reporting: [
 		{
@@ -326,29 +345,29 @@ export const subnavs = {
 			url: appLinks.reports.sale,
 		},
 		{
-			name: "inventory",
-			icon: "bi-archive",
+			name: "campaigns",
+			icon: "bi-megaphone",
 			info: 'brief description here',
 			url: appLinks.reports.inventory,
 		},
-		{
-			name: "restocks",
-			icon: "bi-recycle",
-			info: 'brief description here',
-			url: appLinks.reports.restocks,
-		},
-		{
-			name: "payments",
-			icon: "bi-credit-card",
-			info: 'brief description here',
-			url: appLinks.reports.payment,
-		},
-		{
-			name: "registers",
-			icon: "bi-layers-half",
-			info: 'brief description here',
-			url: appLinks.reports.register,
-		},
+		// {
+		// 	name: "restocks",
+		// 	icon: "bi-recycle",
+		// 	info: 'brief description here',
+		// 	url: appLinks.reports.restocks,
+		// },
+		// {
+		// 	name: "payments",
+		// 	icon: "bi-credit-card",
+		// 	info: 'brief description here',
+		// 	url: appLinks.reports.payment,
+		// },
+		// {
+		// 	name: "registers",
+		// 	icon: "bi-layers-half",
+		// 	info: 'brief description here',
+		// 	url: appLinks.reports.register,
+		// },
 		// {
 		// 	name: "tax",
 		// 	icon: "bi-tags",
@@ -361,12 +380,12 @@ export const subnavs = {
 			info: 'brief description here',
 			url: appLinks.reports.cashflow,
 		},
-		{
-			name: "attendance",
-			icon: "bi-bookmark-star",
-			info: 'brief description here',
-			url: appLinks.reports.attendance,
-		},
+		// {
+		// 	name: "attendance",
+		// 	icon: "bi-bookmark-star",
+		// 	info: 'brief description here',
+		// 	url: appLinks.reports.attendance,
+		// },
 		{
 			name: "logs",
 			icon: "bi-body-text",
@@ -388,17 +407,17 @@ export const subnavs = {
 	],
 	setup: [
 		{
-			name: "shop",
+			name: "station",
 			icon: "bi-shop",
 			info: 'brief description here',
-			url: appLinks.setup.shop,
+			url: appLinks.setup.station,
 		},
-		{
-			name: "outlets",
-			icon: "bi-geo",
-			info: 'brief description here',
-			url: appLinks.setup.outlet,
-		},
+		// {
+		// 	name: "outlets",
+		// 	icon: "bi-geo",
+		// 	info: 'brief description here',
+		// 	url: appLinks.setup.outlet,
+		// },
 		{
 			name: "staffs",
 			icon: "bi-people",
@@ -417,12 +436,12 @@ export const subnavs = {
 			info: 'brief description here',
 			url: appLinks.setup.settings,
 		},
-		{
-			name: "billings",
-			icon: "bi-receipt",
-			info: 'brief description here',
-			url: appLinks.setup.billing,
-		},
+		// {
+		// 	name: "billings",
+		// 	icon: "bi-receipt",
+		// 	info: 'brief description here',
+		// 	url: appLinks.setup.billing,
+		// },
 		// {
 		// 	name: "payments",
 		// 	icon: "bi-cash-stack",

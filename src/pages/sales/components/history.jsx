@@ -54,7 +54,7 @@ const columns = ( onOpen, onPrint, onReturn, onDelete ) => [
     },
     {
         field: 'total_products',
-        headerName: 'No of Items',
+        headerName: '# Litres',
         sortable: true,
         width: 100,
         renderCell: ( { row } ) => row.children.length
@@ -208,7 +208,8 @@ export default function SaleHistoryComponent () {
                         <div className="my-2 d-flex justify-content-between">
                             <div>
                                 <button className="bokx-btn btn-prim"
-                                    onClick={ () => nav( `${ appLinks.sales.index }/${ appLinks.sales.sell }`, { relative: false } ) }>
+                                // onClick={ () => nav( `${ appLinks.sales.index }/${ appLinks.sales.sell }`, { relative: false } ) }
+                                >
                                     <span className="bi bi-bag me-2 d-none d-md-inline"></span>
                                     SELL
                                 </button>

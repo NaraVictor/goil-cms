@@ -36,6 +36,10 @@ export const categorySchema = yup.object( {
 	title: yup.string().trim().required( "shop category is required" ),
 } );
 
+export const campaignSchema = yup.object( {
+	title: yup.string().trim().required( "shop category is required" ),
+} );
+
 export const productSchema = yup.object( {
 	id: yup.string().uuid().nullable( true ),
 	product_code: yup.string().trim().label( 'product code' ),

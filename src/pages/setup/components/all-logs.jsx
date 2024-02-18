@@ -7,13 +7,13 @@ import { getUser } from '../../../helpers/auth';
 
 
 const columns = [
-    {
-        field: 'outlet',
-        headerName: 'Outlet',
-        sortable: true,
-        width: 150,
-        valueGetter: ( { row } ) => row.outlet.outlet_name
-    },
+    // {
+    //     field: 'outlet',
+    //     headerName: 'Outlet',
+    //     sortable: true,
+    //     width: 150,
+    //     valueGetter: ( { row } ) => row.outlet.outlet_name
+    // },
     {
         field: 'user',
         headerName: 'User',
@@ -46,10 +46,10 @@ const columns = [
 
 
 export default function AllLogsComponent () {
-    const user = getUser()
+    // const user = getUser()
 
     const { data: logs = [], isFetching, refetch } = useQuery( {
-        queryFn: () => getLogs( user.id, user.shop_id ),
+        queryFn: () => getLogs( 1, 2 ), // user.id, user.shop_id ),
         queryKey: [ 'shop logs' ],
     } );
 

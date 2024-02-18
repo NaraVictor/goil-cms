@@ -138,7 +138,7 @@ export default function NewUserForm ( { onUpdate } ) {
                 />
                 <small>generated password, resets and other information will be sent here</small>
             </div>
-            <div className='field'>
+            {/* <div className='field'>
                 <label htmlFor="outlets">
                     Assigned Outlets
                     <RequiredIndicator />
@@ -160,7 +160,7 @@ export default function NewUserForm ( { onUpdate } ) {
                     }
                 />
                 <small>user will have access to the assigned outlet's data</small>
-            </div>
+            </div> */}
 
 
             <Alert>

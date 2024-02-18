@@ -70,7 +70,6 @@ const ProductsPage = ( props ) => {
     }
 
     // columns
-
     const columns = ( onOpen, onDelete ) => [
 
         {
@@ -80,17 +79,16 @@ const ProductsPage = ( props ) => {
             width: 70,
             renderCell: ( params ) => params.api.getRowIndexRelativeToVisibleRows( params.row.id ) + 1
         },
+        // {
+        //     field: 'is_a_service',
+        //     headerName: 'Type',
+        //     sortable: true,
+        //     width: 100,
+        //     renderCell: ( { row } ) => row.is_a_service ? 'Service' : 'Product'
+        // },
         {
-            field: 'is_a_service',
-            headerName: 'Type',
-            sortable: true,
-            width: 100,
-            renderCell: ( { row } ) => row.is_a_service ? 'Service' : 'Product'
-        },
-
-        {
-            field: 'product_name',
-            headerName: 'Product',
+            field: 'item_name',
+            headerName: 'Item Name',
             sortable: true,
             // flex: 1,
             width: 350,
@@ -243,8 +241,9 @@ const ProductsPage = ( props ) => {
                             {/* buttons */ }
                             <div className="d-flex justify-content-between">
                                 <div className="buttons has-addons">
-                                    <button className="button bokx-btn btn-prim" onClick={
-                                        () => setMode( { new: true } ) }>
+                                    <button className="button bokx-btn btn-prim"
+                                    // onClick={ () => setMode( { new: true } ) }
+                                    >
                                         <span className="bi bi-plus-circle me-2"></span>
                                         Add
                                         <span className="ms-1 d-none d-md-inline">
