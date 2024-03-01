@@ -116,7 +116,8 @@ const TellerComponent = ( {
                                                         // } ) }
                                                         // isActive={ state.campaignId === '126' }
                                                         isAction
-                                                        title={ demoCampaigns.find( cam => cam.id == camp.campaign_id ).campaign_name }
+                                                        title={
+                                                            demoCampaigns.find( cam => cam.id == camp.campaign_id ).campaign_name }
                                                         label="54 pts remaining"
                                                     />
                                                 </div>

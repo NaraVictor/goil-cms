@@ -8,6 +8,8 @@ import EditCustomerForm from "./components/edit-customer";
 import { deleteCustomer, getAllCustomers } from "../../helpers/api";
 import { useQuery } from "react-query";
 import smalltalk from 'smalltalk';
+import { demoCustomers } from "../../data";
+import { Chip } from "@mui/material";
 
 
 const columns = ( onOpen, onDelete ) => [
@@ -20,13 +22,13 @@ const columns = ( onOpen, onDelete ) => [
         renderCell: ( params ) => params.api.getRowIndexRelativeToVisibleRows( params.row.id ) + 1
     },
     {
-        field: 'customer_name',
+        field: 'full_name',
         headerName: 'Name',
         sortable: true,
         width: 280,
     },
     {
-        field: 'contact',
+        field: 'primary_contact',
         headerName: 'Contact',
         sortable: true,
         width: 150,
@@ -89,7 +91,7 @@ const columns = ( onOpen, onDelete ) => [
 
 
 const CustomersPage = ( props ) => {
-    const [ filteredData, setFilteredData ] = useState( [] );
+    const [ filteredData, setFilteredData ] = useState( demoCustomers );
     const [ mode, setMode ] = useState( {
         new: false,
         edit: false,
@@ -103,11 +105,13 @@ const CustomersPage = ( props ) => {
 
 
     // queries
-    const { data: customers = [], isFetching, refetch: fetchCustomers } = useQuery( {
-        queryFn: () => getAllCustomers(),
-        queryKey: [ 'customers' ],
-        onSuccess: ( data ) => setFilteredData( data )
-    } );
+    // const { data: customers = [], isFetching, refetch: fetchCustomers } = useQuery( {
+    //     queryFn: () => getAllCustomers(),
+    //     queryKey: [ 'customers' ],
+    //     onSuccess: ( data ) => setFilteredData( data )
+    // } );
+
+    const customers = demoCustomers
 
 
     const handleOpen = ( id ) => { setMode( { edit: true, id } ) }
@@ -149,17 +153,22 @@ const CustomersPage = ( props ) => {
                     <Paper>
                         <NewCustomerForm
                             onClose={ () => setMode( { new: false } ) }
-                            onSuccess={ fetchCustomers }
+                        // onSuccess={ fetchCustomers }
                         />
                     </Paper> :
                     mode.edit ?
                         <Paper>
-                            <EditCustomerForm
+                            <Chip color="error" label="Nothing here yet" />
+                            <button
+                                className="ms-3 button is-secondary"
+                                onClick={ () => { setMode( { edit: false } ) } }
+                            >Back</button>
+                            {/* <EditCustomerForm
                                 canEdit={ true } //use permission here
                                 id={ mode.id }
                                 onUpdate={ fetchCustomers }
                                 onClose={ () => setMode( { edit: false, id: null } ) }
-                            />
+                            /> */}
                         </Paper> :
                         <>
                             <PageHeader
@@ -199,12 +208,12 @@ const CustomersPage = ( props ) => {
                                         onChange={ value =>
                                             setFilteredData(
                                                 customers.filter( fd =>
-                                                    fd.customer_name.toLowerCase().includes( value.toLowerCase() ) ||
+                                                    fd.full_name.toLowerCase().includes( value.toLowerCase() ) ||
                                                     fd.gender.toLowerCase().includes( value.toLowerCase() ) ||
                                                     fd.contact.toLowerCase().includes( value.toLowerCase() )
                                                 ) )
                                         }
-                                        placeholder="search by name, gender" />
+                                        placeholder="search by name, gender & contact" />
                                     {/* </div> */ }
                                 </div>
                             </div>
@@ -214,7 +223,7 @@ const CustomersPage = ( props ) => {
                                     <DataGrid
                                         rows={ filteredData }
                                         columns={ columns( handleOpen, handleDelete ) }
-                                        loading={ isFetching }
+                                    // loading={ isFetching }
                                     />
                                 </Box>
                             </Paper>

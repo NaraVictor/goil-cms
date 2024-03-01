@@ -4,13 +4,15 @@ import { PageHeader, SaveButton, SearchInput } from "../../components/shared";
 import NewCampaignForm from "./components/new-campaign";
 import EditCampaignForm from './components/edit-campaign'
 import smalltalk from 'smalltalk'
-import { Box, Modal, Paper } from "@mantine/core";
+import { Box, Menu, Modal, Paper } from "@mantine/core";
 import { deleteCampaign, getAllCampaigns, getAllProducts } from "../../helpers/api";
 import { useQuery } from "react-query";
 import { DataGrid } from "@mui/x-data-grid";
+import { Chip } from "@mui/material";
+import { demoCampaigns } from "../../data";
 
 const CampaignPage = ( props ) => {
-    const [ filteredData, setFilteredData ] = useState( [] );
+    const [ filteredData, setFilteredData ] = useState( demoCampaigns );
     const { Search } = Input;
     const [ mode, setMode ] = useState( {
         new: false,
@@ -24,11 +26,13 @@ const CampaignPage = ( props ) => {
     } )
 
     // queries
-    const { data: campaigns = [], isFetching, refetch: fetchCampaigns } = useQuery( {
-        queryFn: () => getAllCampaigns(),
-        queryKey: [ 'campaigns' ],
-        onSuccess: ( data ) => setFilteredData( data || [] )
-    } );
+    // const { data: campaigns = [], isFetching, refetch: fetchCampaigns } = useQuery( {
+    //     queryFn: () => getAllCampaigns(),
+    //     queryKey: [ 'campaigns' ],
+    //     onSuccess: ( data ) => setFilteredData( data || [] )
+    // } );
+
+    const campaigns = demoCampaigns
 
 
     // handlers
@@ -73,7 +77,7 @@ const CampaignPage = ( props ) => {
             headerName: 'Name',
             sortable: true,
             width: 350,
-            renderCell: ( { row } ) => 'campaign name'
+            renderCell: ( { row } ) => row?.campaign_name
         },
         {
             field: 'start_date',
@@ -81,7 +85,7 @@ const CampaignPage = ( props ) => {
             sortable: true,
             // width: 130,
             flex: 1,
-            renderCell: ( { row } ) => 'date'
+            renderCell: ( { row } ) => row?.start_date
         },
         {
             field: 'end_date',
@@ -89,15 +93,15 @@ const CampaignPage = ( props ) => {
             sortable: true,
             // width: 100,
             flex: 1,
-            renderCell: ( { row } ) => 'date'
+            renderCell: ( { row } ) => row?.end_date
         },
-        {
-            field: 'slot',
-            headerName: 'Slots',
-            sortable: true,
-            width: 130,
-            renderCell: ( { row } ) => 'remaining/total'
-        },
+        // {
+        //     field: 'slot',
+        //     headerName: 'Slots',
+        //     sortable: true,
+        //     width: 130,
+        //     renderCell: ( { row } ) => ''
+        // },
         {
             // headerName: 'Actions',
             width: 50,
@@ -147,17 +151,23 @@ const CampaignPage = ( props ) => {
                     <Paper>
                         <NewCampaignForm
                             onClose={ () => setMode( { new: false } ) }
-                            onSuccess={ fetchCampaigns }
+                        // onSuccess={ fetchCampaigns }
                         />
                     </Paper> :
                     mode.edit ?
                         <Paper>
-                            <EditCampaignForm
+                            <Chip color="error" label="Nothing here yet" />
+                            <button
+                                className="ms-3 button is-secondary"
+                                onClick={ () => { setMode( { edit: false } ) } }
+                            >Back</button>
+
+                            {/* <EditCampaignForm
                                 canEdit={ true } //use permission here
                                 id={ mode.id }
                                 onUpdate={ fetchCampaigns }
                                 onClose={ () => setMode( { edit: false, id: null } ) }
-                            />
+                            /> */}
                         </Paper>
                         :
                         <>
@@ -189,7 +199,7 @@ const CampaignPage = ( props ) => {
                                 <Box sx={ { height: 500, width: '100%' } }>
                                     <DataGrid
                                         rows={ filteredData }
-                                        loading={ isFetching }
+                                        // loading={ isFetching }
                                         columns={ columns( handleOpen, handleDelete ) }
                                     />
                                 </Box>

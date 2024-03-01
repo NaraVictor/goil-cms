@@ -8,11 +8,12 @@ import { Alert, Modal, Select } from '@mantine/core';
 import { IconX } from '@tabler/icons-react';
 import { Chip } from '@mui/material';
 import Tile from '../../../components/pages/tile';
+import { demoCampaigns, demoCustomers, demoProducts, demoRegisteredPrograms } from "../../../data"
 
 const claimStateTemplate = {
-    customerId: null,
+    customer_id: null,
     points: 0,
-    campaignId: null
+    campaign_id: null
 }
 
 
@@ -133,22 +134,23 @@ const NewClaimForm = ( { onSuccess, showHeader = true, onClose } ) => {
                                 <label className="mb-0" htmlFor="customer">Customer</label>
                                 <Select
                                     id='customer'
-                                    value={ state.customerId }
+                                    value={ state.customer_id }
                                     required
-                                    onChange={ ( value ) => setState( { ...state, customerId: value } ) }
+                                    onChange={ ( value ) => setState( { ...state, customer_id: value } ) }
                                     size="md"
                                     clearable
                                     searchable
                                     placeholder='select customer'
-                                    data={ [
-                                        { value: '123', label: 'John Doe' },
-                                        { value: '124', label: 'Jack Toronto' },
-                                        { value: '125', label: 'Ama Ghana' },
-                                    ] }
+                                    data={ demoCustomers.map( cus => {
+                                        return {
+                                            value: cus.id,
+                                            label: cus.full_name
+                                        }
+                                    } ) }
                                 />
                             </div>
                             {
-                                state.campaignId &&
+                                state.campaign_id &&
                                 <div className="field col-12">
                                     <label className="mb-0" htmlFor="claimPoints">Reward Points</label>
                                     <input
@@ -161,7 +163,7 @@ const NewClaimForm = ( { onSuccess, showHeader = true, onClose } ) => {
                                 </div>
                             }
                             {
-                                ( state.customerId && state.points > 0 ) &&
+                                ( state.customer_id && state.points > 0 ) &&
                                 <div className="mt-4">
                                     <strong>estimated value</strong>
                                     <h1 className='mb-0'>1.5L</h1>
@@ -172,59 +174,31 @@ const NewClaimForm = ( { onSuccess, showHeader = true, onClose } ) => {
 
                         <div className="col-md-6 col-12">
                             {
-                                state.customerId ?
+                                demoRegisteredPrograms.filter( dr => dr.customer_id === state.customer_id ).length > 0 ?
                                     <>
                                         <Chip label="Registered Loyalty Programs" />
                                         <p>select campaign to claim points from</p>
                                         <div className="row mt-3">
-                                            <div className="col-12 col-md-6 mb-2">
-                                                <Tile
-                                                    onClick={ () => setState( {
-                                                        ...state,
-                                                        campaignId: '123'
+                                            {
+                                                demoRegisteredPrograms
+                                                    .filter( rp => rp.customer_id === state.customer_id )
+                                                    .map( ( camp ) => {
+                                                        return <div className="col-12 col-md-6 mb-2">
+                                                            <Tile
+                                                                onClick={ () => setState( {
+                                                                    ...state,
+                                                                    campaign_id: camp.campaign_id
+                                                                } ) }
+                                                                isActive={ state.campaign_id === camp.campaign_id }
+                                                                isAction
+                                                                title={ demoCampaigns.find( cam => cam.id == camp.campaign_id ).campaign_name }
+                                                                label="54 pts remaining"
+                                                            />
+                                                        </div>
                                                     } ) }
-                                                    isActive={ state.campaignId === '123' }
-                                                    isAction
-                                                    title="Gold"
-                                                    label="100 pts remaining"
-                                                /></div>
-                                            <div className="col-12 col-md-6 mb-2">
-                                                <Tile
-                                                    onClick={ () => setState( {
-                                                        ...state,
-                                                        campaignId: '125'
-                                                    } ) }
-                                                    isActive={ state.campaignId === '125' }
-                                                    isAction
-                                                    title="Diamond Delux"
-                                                    label="120 pts remaining"
-                                                /></div>
-                                            <div className="col-12 col-md-6 mb-2">
-                                                <Tile
-                                                    onClick={ () => setState( {
-                                                        ...state,
-                                                        campaignId: '126'
-                                                    } ) }
-                                                    isActive={ state.campaignId === '126' }
-                                                    isAction
-                                                    title="Bronze"
-                                                    label="54 pts remaining"
-                                                />
-                                            </div>
-                                            <div className="col-12 col-md-6 mb-2">
-                                                <Tile
-                                                    onClick={ () => setState( {
-                                                        ...state,
-                                                        campaignId: '127'
-                                                    } ) }
-                                                    isActive={ state.campaignId === '127' }
-                                                    isAction
-                                                    title="Starter Pack"
-                                                    label="15 pts remaining"
-                                                /></div>
                                         </div>
                                     </> :
-                                    <Chip className='mt-5' color='warning' label="Select customer to view related campaigns" />
+                                    <Chip className='mt-5' color='warning' label="No campaigns found for customer" />
                             }
                         </div>
                     </div>

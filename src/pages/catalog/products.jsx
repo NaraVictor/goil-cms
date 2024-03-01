@@ -10,17 +10,12 @@ import smalltalk from 'smalltalk';
 import { useQuery } from 'react-query'
 import { daysToExpiry } from "../../helpers/utilities";
 import { Chip } from "@mui/material";
+import { demoProducts } from "../../data";
 
 
 
 const ProductsPage = ( props ) => {
-    const [ filteredData, setFilteredData ] = useState( [] );
-    const [ colors, setColor ] = useState( {
-        red: false,
-        yellow: false,
-        gray: false,
-        black: false
-    } );
+    const [ filteredData, setFilteredData ] = useState( demoProducts );
 
     const [ mode, setMode ] = useState( {
         new: false,
@@ -34,11 +29,13 @@ const ProductsPage = ( props ) => {
     } )
 
     // queries
-    const { data: products = [], isFetching, refetch: fetchProducts } = useQuery( {
-        queryFn: () => getAllProducts(),
-        queryKey: [ 'products' ],
-        onSuccess: ( data ) => setFilteredData( data )
-    } );
+    // const { data: products = [], isFetching, refetch: fetchProducts } = useQuery( {
+    //     queryFn: () => getAllProducts(),
+    //     queryKey: [ 'products' ],
+    //     onSuccess: ( data ) => setFilteredData( data )
+    // } );
+
+    const products = demoProducts
 
 
     // handlers
@@ -80,12 +77,12 @@ const ProductsPage = ( props ) => {
             renderCell: ( params ) => params.api.getRowIndexRelativeToVisibleRows( params.row.id ) + 1
         },
         {
-            field: 'item_name',
+            field: 'product_name',
             headerName: 'Item Name',
             sortable: true,
             // flex: 1,
             width: 350,
-            renderCell: ( { row } ) => row.item_name
+            renderCell: ( { row } ) => row.product_name
         },
         {
             field: 'unit',
@@ -145,30 +142,6 @@ const ProductsPage = ( props ) => {
         }
     ];
 
-
-
-    useEffect( () => {
-
-        filteredData.forEach( fd => {
-            if ( !fd.is_a_service ) {
-                if ( ( fd?.stock[ 0 ]?.units_in_stock <= fd?.stock[ 0 ]?.reorder_level ) && fd?.stock[ 0 ]?.units_in_stock > 2 )
-                    setColor( { ...colors, yellow: true } )
-
-                if ( fd?.stock[ 0 ]?.units_in_stock < 3 )
-                    setColor( { ...colors, red: true } )
-            }
-
-            if ( daysToExpiry( fd?.expiry_date ) <= 90 && daysToExpiry( fd?.expiry_date ) > 0 )
-                setColor( { ...colors, gray: true } )
-
-
-            if ( daysToExpiry( fd.expiry_date ) < 1 )
-                setColor( { ...colors, black: true } )
-        } )
-
-    }, [ filteredData ] )
-
-
     return (
         <section className="mt-4 pb-4">
             <Modal
@@ -183,17 +156,22 @@ const ProductsPage = ( props ) => {
                     <Paper>
                         <NewProductForm
                             onClose={ () => setMode( { new: false } ) }
-                            onSuccess={ fetchProducts }
+                        // onSuccess={ fetchProducts }
                         />
                     </Paper> :
                     mode.edit ?
                         <Paper>
-                            <EditItemForm
+                            <Chip color="error" label="Nothing here yet" />
+                            <button
+                                className="ms-3 button is-secondary"
+                                onClick={ () => { setMode( { edit: false } ) } }
+                            >Back</button>
+                            {/* <EditItemForm
                                 canEdit={ true } //use permission here
                                 id={ mode.id }
                                 onUpdate={ fetchProducts }
                                 onClose={ () => setMode( { edit: false, product_id: null } ) }
-                            />
+                            /> */}
                         </Paper>
                         :
                         <>
@@ -211,18 +189,6 @@ const ProductsPage = ( props ) => {
                                             Item
                                         </span>
                                     </button>
-                                    {/* <button className="button bokx-btn">
-                                        <span className="bi bi-download me-2"></span>
-                                        <span className="d-none d-md-inline">
-                                            Import
-                                        </span>
-                                    </button> */}
-                                    {/* <button className="button bokx-btn">
-                                            <span className="me-2 bi bi-arrow-up-right-square"></span>
-                                            <span className="d-none d-md-inline">
-                                                Export
-                                            </span>
-                                        </button> */}
                                 </div>
                                 {/* <div className="d-flex d-none d-md-inline"> */ }
                                 <SearchInput
@@ -230,27 +196,18 @@ const ProductsPage = ( props ) => {
                                         setFilteredData(
                                             products.filter( fd =>
                                                 fd.product_name.toLowerCase().includes( value.toLowerCase() ) ||
-                                                fd.category.title.toLowerCase().includes( value.toLowerCase() )
-                                                // fd.product_name.toLowerCase().includes( value.toLowerCase() )
+                                                fd.unit.toLowerCase().includes( value.toLowerCase() )
                                             ) )
                                     }
-                                    placeholder="search by name, category"
+                                    placeholder="search by name, unit"
                                     autoFocus />
                                 {/* </div> */ }
                             </div>
-                            {/* buttons end */ }
-                            <div className="mb-2 d-flex">
-                                { colors.red && <small className="px-2 d-block p-1 bg-danger text-white">Critical (Less than 3 units)</small> }
-                                { colors.yellow && <small className="px-2 d-block p-1 bg-warning">Warning (Below reorder level)</small> }
-                                { colors.gray && <small className="px-2 d-block p-1 bg-secondary text-white">Expiring (About to expire)</small> }
-                                { colors.black && <small className="px-2 d-block p-1 bg-dark text-white">Expired (Already expired)</small> }
-                            </div>
-                            {/* products table */ }
                             <Paper>
                                 <Box sx={ { height: 500, width: '100%' } }>
                                     <DataGrid
                                         rows={ filteredData }
-                                        loading={ isFetching }
+                                        // loading={ isFetching }
                                         columns={ columns( handleOpen, handleDelete ) }
                                     />
                                 </Box>
