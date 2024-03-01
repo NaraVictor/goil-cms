@@ -1,23 +1,14 @@
-import { Loader, Modal } from "@mantine/core";
+import { Loader } from "@mantine/core";
 import { useAtom } from "jotai";
 import Tile from "../../../components/pages/tile";
 import { selectedProductsAtom } from "../../../helpers/state/sales";
-import { useState } from "react";
+import _ from "lodash";
 
 
 const ProductsComponent = ( { products, isFetching } ) => {
     // atoms
-    const [ , setSelected ] = useAtom( selectedProductsAtom )
-
-    // state
-    const [ modal, setModal ] = useState( {
-        isOpen: false,
-        title: '',
-        content: null,
-        size: 'md'
-    } )
-
-
+    const [ selected, setSelected ] = useAtom( selectedProductsAtom )
+    console.log( { selected } );
     return (
         <div>
             <div className="me-3 mt-2">
@@ -25,7 +16,6 @@ const ProductsComponent = ( { products, isFetching } ) => {
                     isFetching &&
                     <div><Loader color="orange" /> please wait... </div>
                 }
-
                 {
                     ( !isFetching && !_.isEmpty( products ) ) &&
                     <div className="row">
@@ -34,6 +24,7 @@ const ProductsComponent = ( { products, isFetching } ) => {
                                 <Tile
                                     title={ <h3>{ prod.product_name }</h3> }
                                     isAction
+                                    isActive={ !_.isEmpty( selected.find( p => p.id == prod.id ) ) }
                                     onClick={ () => setSelected( prod ) }
                                 />
                             </div>
@@ -41,14 +32,6 @@ const ProductsComponent = ( { products, isFetching } ) => {
                     </div>
                 }
             </div>
-            <Modal
-                onClose={ () => setModal( { ...modal, isOpen: false } ) }
-                opened={ modal.isOpen }
-                title={ modal.title }
-                size={ modal.size }
-            >
-                { modal.content }
-            </Modal>
         </div >
     );
 }
