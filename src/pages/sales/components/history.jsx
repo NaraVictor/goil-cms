@@ -87,11 +87,6 @@ const columns = ( onOpen, onPrint, onReturn, onDelete ) => [
                                 icon={ <span className="bi bi-printer" /> }>
                                 Receipt
                             </Menu.Item>
-                            {/* <Menu.Item
-                                onClick={ () => onReturn( row.id ) }
-                                icon={ <span className="bi bi-reply-all" /> }>
-                                Process Return
-                            </Menu.Item> */}
                             <Menu.Item
                                 // className='text-danger'
                                 color="red"
@@ -208,7 +203,7 @@ export default function SaleHistoryComponent () {
                         <div className="my-2 d-flex justify-content-between">
                             <div>
                                 <button className="bokx-btn btn-prim"
-                                // onClick={ () => nav( `${ appLinks.sales.index }/${ appLinks.sales.sell }`, { relative: false } ) }
+                                    onClick={ () => nav( `${ appLinks.sales.index }/${ appLinks.sales.sell }`, { relative: false } ) }
                                 >
                                     <span className="bi bi-bag me-2 d-none d-md-inline"></span>
                                     SELL

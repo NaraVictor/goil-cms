@@ -31,7 +31,7 @@ const Tile = ( { title, icon, url, className, isLink = true, isAction = false, i
     );
 }
 
-export const SellCard = ( { title, icon, className, isLink = true, isAction = false, isActive = false, onClick } ) => {
+export const SellCard = ( { title, icon, className, url = "", isLink = true, isAction = false, isActive = false, onClick } ) => {
     return (
         <div
             onClick={ onClick }
@@ -46,7 +46,8 @@ export const SellCard = ( { title, icon, className, isLink = true, isAction = fa
     );
 }
 
-export const SummaryCard = ( { label, data = 0, isLink = true, url, icon, className, alert = false, danger = false, warning = false, onclick } ) => {
+export const SummaryCard = ( { label, data = 0, isLink = true, url, icon, className, alert = false, danger = false, warning = false,
+    onclick } ) => {
     const { Paragraph } = Typography
     const content = (
         <Tooltip title={ label }>

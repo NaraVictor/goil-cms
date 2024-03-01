@@ -1,7 +1,7 @@
 import { Divider, Switch, message, } from "antd";
 
 import Tile from "../../../components/pages/tile";
-import { cedisLocale, validateProduct } from "../../../helpers/utilities";
+import { cedisLocale, validateItem } from "../../../helpers/utilities";
 
 import smallTalk from 'smalltalk'
 import { useMutation, useQuery } from "react-query";
@@ -48,7 +48,7 @@ const listType = {
     Variant: 'variant'
 }
 
-const EditProductForm = ( { id, onClose, canEdit, showHeader = true, onUpdate } ) => {
+const EditItemForm = ( { id, onClose, canEdit, showHeader = true, onUpdate } ) => {
 
     const [ errMsg, setErrMsg ] = useState( '' )
     const [ state, setState ] = useState( stateTemplate )
@@ -147,7 +147,7 @@ const EditProductForm = ( { id, onClose, canEdit, showHeader = true, onUpdate } 
 
     const updateProduct = () => {
         smallTalk.confirm(
-            "Update Product", "You are about to update this product, continue?", {
+            "Update Item", "You are about to update this item, continue?", {
             buttons: {
                 ok: 'YES',
                 cancel: 'NO',
@@ -155,7 +155,7 @@ const EditProductForm = ( { id, onClose, canEdit, showHeader = true, onUpdate } 
         }
         ).then( value => {
 
-            const { isError, message, data } = validateProduct( state, stocks, variants, suppliers )
+            const { isError, message, data } = validateItem( state, stocks, variants, suppliers )
 
             if ( !isError ) {
                 setErrMsg( "" )
@@ -828,4 +828,4 @@ const EditProductForm = ( { id, onClose, canEdit, showHeader = true, onUpdate } 
     );
 }
 
-export default EditProductForm;
+export default EditItemForm;

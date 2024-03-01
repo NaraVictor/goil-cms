@@ -1,12 +1,11 @@
 import { Divider, message, Select } from 'antd'
 import _ from 'lodash';
-import React, { useRef, useState } from 'react';
+import React, { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { useMutation, useQuery } from 'react-query';
 import { RequiredIndicator } from '../../../components/shared';
 import { getAllCategories, postNewCustomer } from '../../../helpers/api';
 
-import NewCustomerTypeForm from './new-customer-group'
 import { Modal } from '@mantine/core';
 
 const NewCustomerForm = ( { showFooter, onSuccess, showHeader = true, onClose } ) => {
@@ -23,10 +22,6 @@ const NewCustomerForm = ( { showFooter, onSuccess, showHeader = true, onClose } 
         zIndex: 1000,
     } )
 
-    const { data: categories = [], refetch: fetchCustomers } = useQuery( {
-        queryFn: () => getAllCategories( 'customer' ),
-        queryKey: [ 'customer-categories' ],
-    } );
 
     const { mutateAsync, isLoading } = useMutation( ( data ) => postNewCustomer( data ), {
         onSuccess: ( data, variables, context ) => {
@@ -55,15 +50,6 @@ const NewCustomerForm = ( { showFooter, onSuccess, showHeader = true, onClose } 
         },
         retry: true
     } );
-
-
-    // handlers
-    const handleCountryChange = ( e ) => console.log( 'country change: ', e );
-
-    const handlePhoneChange = ( e ) => {
-        setValue( e )
-        // console.log( 'country is: ', parsePhoneNumber( e ).country );
-    };
 
 
     return (
@@ -118,7 +104,7 @@ const NewCustomerForm = ( { showFooter, onSuccess, showHeader = true, onClose } 
                             autoFocus
                             id="customer_name"
                             className="input"
-                            placeholder="first name"
+                            placeholder="full name"
                             { ...register( "customer_name", { required: true } ) }
                         />
                     </div>
@@ -170,6 +156,16 @@ const NewCustomerForm = ( { showFooter, onSuccess, showHeader = true, onClose } 
                         </select>
                     </div>
                     <div className="col-md-6 col-12">
+                        <label htmlFor="email">Email</label>
+                        <input
+                            type="email"
+                            id='email'
+                            className="input"
+                            placeholder="email address of customer"
+                            { ...register( "email" ) }
+                        />
+                    </div>
+                    {/*
                         <label htmlFor="category">Category
                             <RequiredIndicator />
                         </label>
@@ -199,19 +195,9 @@ const NewCustomerForm = ( { showFooter, onSuccess, showHeader = true, onClose } 
                             <span className="bi bi-plus-circle me-2"></span>
                             add category
                         </p>
-                    </div>
+                    </div> */}
                 </div>
 
-                <div className="my-3">
-                    <label htmlFor="email">Email</label>
-                    <input
-                        type="email"
-                        id='email'
-                        className="input"
-                        placeholder="email address of customer"
-                        { ...register( "email" ) }
-                    />
-                </div>
                 <div className="my-3">
                     <label htmlFor="address">Location</label>
                     <input

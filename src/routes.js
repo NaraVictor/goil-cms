@@ -51,7 +51,8 @@ import {
 	SwitchOutlet,
 	AttendanceReportPage,
 	ActivitiesReportPage,
-	PublicPurchaseOrder
+	PublicPurchaseOrder,
+	ClaimsPage
 } from "./pages";
 
 // components
@@ -98,6 +99,7 @@ const AppRoutes = () => {
 				{ path: appLinks.catalog.charges, element: <ChargesPage /> },
 				{ path: appLinks.catalog.suppliers, element: <SuppliersPage /> },
 				{ path: appLinks.catalog.campaign, element: <CampaignPage /> },
+				{ path: appLinks.catalog.claims, element: <ClaimsPage /> },
 				{ path: appLinks.catalog.orders, element: <OrdersPage /> },
 				{ path: appLinks.catalog.stockControl, element: <StockControlPage /> },
 				{

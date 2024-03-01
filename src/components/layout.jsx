@@ -50,7 +50,7 @@ const AppLayout = () => {
                                 </div>
                             </div>
                         </div>
-                        {
+                        {/* {
                             !isOnline &&
                             <div className="sticky-bottom bg-warning text-center"
                                 style={ {
@@ -63,7 +63,7 @@ const AppLayout = () => {
                                 <span className="bi bi-cloud-slash me-2" />
                                 No Internet connection
                             </div>
-                        }
+                        } */}
 
                     </div>
                 </div>

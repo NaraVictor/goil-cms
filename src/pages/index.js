@@ -15,6 +15,7 @@ export { CustomersPage } from "./catalog/customers";
 export { ExpensesPage } from "./catalog/expenses";
 export { SuppliersPage } from "./catalog/suppliers";
 export { CampaignPage } from "./catalog/campaigns";
+export { ClaimsPage } from "./catalog/claims";
 export { OrdersPage } from "./catalog/orders";
 export { StockControlPage } from "./catalog/stock-control";
 export { InventoryCountPage } from "./catalog/inventory-count";

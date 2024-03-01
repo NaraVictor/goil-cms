@@ -2,35 +2,18 @@ import PageTitle from "../../components/page-title";
 import ProductsComponent from "./components/products";
 import TellerComponent from "./components/teller";
 import _ from "lodash";
-import { getAllCategories, getAllCustomers, getAllProducts } from "../../helpers/api";
+import { getAllCustomers, getAllProducts } from "../../helpers/api";
 import { useQuery } from "react-query";
-import { isRegisterOpen } from "../../helpers/auth";
-import { Chip } from "@mui/material";
-import cashReg from '../../static/img/register.png'
 import { useNavigate } from "react-router-dom";
-import { appLinks } from "../../helpers/config";
-import { generateRoute } from "../../helpers/utilities";
-import { useEffect, useState } from "react";
+import { CounterComponent } from "./components/counter";
 
 const SellPage = ( props ) => {
     const nav = useNavigate()
-    const [ products, setProd ] = useState( [] )
 
     // queries
-    const { isFetching, refetch: fetchProducts } = useQuery( {
+    const { data: products, isFetching, refetch: fetchProducts } = useQuery( {
         queryFn: () => getAllProducts(),
         queryKey: [ 'products' ],
-        onSuccess: data => setProd( data?.map( pro => {
-            return {
-                ...pro,
-                retail_price: parseFloat( pro.markup_price + pro.supplier_price )
-            }
-        } ) )
-    } );
-
-    const { data: categories = [], refetch: fetchCategories } = useQuery( {
-        queryFn: () => getAllCategories( 'product' ),
-        queryKey: [ 'categories' ],
     } );
 
     const { data: customers = [], refetch: fetchCustomers } = useQuery( {
@@ -40,38 +23,48 @@ const SellPage = ( props ) => {
 
 
     return (
-        <section className="mt-4">
-            <PageTitle title="Sell" />
-            {
-                isRegisterOpen() ?
+        <>
+            <section className="mt-4">
+                <PageTitle title="Sell" />
+                {
                     <div className="row">
                         <div className="col-md-8 col-12">
                             <ProductsComponent
-                                isFetching={ isFetching }
-                                products={ products.filter( pros => pros?.is_a_service || pros?.stock[ 0 ]?.units_in_stock > 0 ) }
-                                categories={ categories }
+                                isFetching={ false }
+                                products={ [
+                                    {
+                                        id: '1234',
+                                        product_name: 'Petrol',
+                                        unit: 'litre',
+                                        unit_price: 12.99
+                                    },
+                                    {
+                                        id: '1223',
+                                        product_name: 'Diesel',
+                                        unit: 'litre',
+                                        unit_price: 16.54
+                                    },
+                                    {
+                                        id: '1211',
+                                        product_name: 'Engine Oil',
+                                        unit: 'litre',
+                                        unit_price: 55
+                                    },
+                                ] }
                             />
                         </div>
-                        <div className="order-first order-md-1 mb-5 mb-md-0 col-md-4 col-12 g-0">
+                        <div className="mb-5 mb-md-0 col-md-4 col-12">
                             <TellerComponent
                                 customers={ customers }
                                 onFetchCustomers={ fetchCustomers }
                                 onFetchProducts={ fetchProducts }
                             />
                         </div>
-                    </div> :
-                    <div className="p-4 text-center">
-                        <img className="mt-5 pb-3" src={ cashReg } alt="cash register iamge" width={ 200 } height={ 200 } />
-                        <div className="mb-2">
-                            <Chip color="info" label="Register Closed. Open or join one to continue selling" />
-                        </div>
-                        <button
-                            onClick={ () => nav( generateRoute( [ appLinks.sales.index, appLinks.sales.register ] ) ) }
-                            className="bokx-btn btn-prim">Open Register</button>
                     </div>
-
-            }
-        </section>
+                }
+            </section>
+            <CounterComponent />
+        </>
     );
 }
 

@@ -59,7 +59,7 @@ const PrimaryNav = ( props ) => {
     return (
         <nav className="px-md-5 primary-nav">
             <Link to={ appLinks.home } className="">
-                <img src={ logo } width={ 50 } alt="Goil App logo" />
+                <img src={ logo } width={ 40 } alt="Goil App logo" />
             </Link>
             <div className="nav-links">
                 <NavLink

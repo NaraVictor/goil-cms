@@ -4,11 +4,11 @@ import { Divider, Drawer, message, } from "antd";
 import { useEffect, useState } from "react";
 import { PageHeader, SaveButton, SearchInput } from "../../components/shared";
 import { deleteProduct, getAllProducts } from "../../helpers/api";
-import EditProductForm from "./components/edit-product";
+import EditItemForm from "./components/edit-product";
 import NewProductForm from "./components/new-product";
 import smalltalk from 'smalltalk';
 import { useQuery } from 'react-query'
-import { cedisLocale, daysToExpiry } from "../../helpers/utilities";
+import { daysToExpiry } from "../../helpers/utilities";
 import { Chip } from "@mui/material";
 
 
@@ -79,72 +79,38 @@ const ProductsPage = ( props ) => {
             width: 70,
             renderCell: ( params ) => params.api.getRowIndexRelativeToVisibleRows( params.row.id ) + 1
         },
-        // {
-        //     field: 'is_a_service',
-        //     headerName: 'Type',
-        //     sortable: true,
-        //     width: 100,
-        //     renderCell: ( { row } ) => row.is_a_service ? 'Service' : 'Product'
-        // },
         {
             field: 'item_name',
             headerName: 'Item Name',
             sortable: true,
             // flex: 1,
             width: 350,
-            renderCell: ( { row } ) => {
-                let classes
-
-                if ( !row.is_a_service ) {
-                    if ( ( row?.stock[ 0 ]?.units_in_stock <= row?.stock[ 0 ]?.reorder_level ) && row?.stock[ 0 ]?.units_in_stock > 2 )
-                        classes = " bg-warning text-black p-3 w-100 "
-
-                    if ( row?.stock[ 0 ]?.units_in_stock < 3 )
-                        classes = " bg-danger text-white p-3 w-100 "
-                }
-
-                if ( daysToExpiry( row?.expiry_date ) <= 90 && daysToExpiry( row?.expiry_date ) > 0 )
-                    classes = " bg-secondary text-white p-3 w-100 "
-
-                if ( daysToExpiry( row?.expiry_date ) < 1 )
-                    classes = " bg-dark text-white p-3 w-100 "
-
-
-                return <span className={ classes }> { row.product_name } </span>
-            }
+            renderCell: ( { row } ) => row.item_name
         },
         {
-            field: 'category',
-            headerName: 'Category',
+            field: 'unit',
+            headerName: 'Unit',
             sortable: true,
-            // width: 130,
-            flex: 1,
-            valueGetter: ( { row } ) => row.category?.title
+            width: 200,
+            valueGetter: ( { row } ) => row.unit
         },
         {
-            field: 'stock',
-            headerName: 'Units',
+            field: 'unit_price',
+            headerName: 'Unit Price',
             sortable: true,
-            width: 100,
-            renderCell: ( { row } ) => row?.stock[ 0 ]?.units_in_stock || <Chip label="n/a" />
+            width: 150,
+            renderCell: ( { row } ) => row?.unit_price
         },
-        {
-            field: 'rtp',
-            headerName: 'Retail Price',
-            sortable: true,
-            width: 130,
-            renderCell: ( { row } ) =>
-                cedisLocale.format( parseFloat( row?.markup_price ) + parseFloat( row?.supplier_price ) )
-        },
-        {
-            field: 'sale_count',
-            headerName: 'Sales #',
-            sortable: true,
-            width: 90
-        },
+        // {
+        //     field: 'sale_count',
+        //     headerName: 'Sales #',
+        //     sortable: true,
+        //     width: 90
+        // },
         {
             // headerName: 'Actions',
-            width: 50,
+            // width: 100,
+            flex: 1,
             renderCell: ( { row } ) => {
                 return (
                     <div className="d-flex">
@@ -163,11 +129,6 @@ const ProductsPage = ( props ) => {
                                     icon={ <span className="bi bi-arrow-up-right-square" /> }>
                                     Open
                                 </Menu.Item>
-                                {/* <Menu.Item
-                                onClick={ () => onEdit( row.id ) }
-                                icon={ <span className="bi bi-pencil" /> }>
-                                Edit
-                            </Menu.Item> */}
                                 <Menu.Item
                                     // className="text-danger"
                                     color="red"
@@ -227,7 +188,7 @@ const ProductsPage = ( props ) => {
                     </Paper> :
                     mode.edit ?
                         <Paper>
-                            <EditProductForm
+                            <EditItemForm
                                 canEdit={ true } //use permission here
                                 id={ mode.id }
                                 onUpdate={ fetchProducts }
@@ -237,12 +198,12 @@ const ProductsPage = ( props ) => {
                         :
                         <>
                             <PageHeader title="Inventory" description="view, edit and add inventory"
-                                metaData={ `${ filteredData.length } items` || '...' } />
+                                metaData={ `${ filteredData.length } products` || '...' } />
                             {/* buttons */ }
                             <div className="d-flex justify-content-between">
                                 <div className="buttons has-addons">
                                     <button className="button bokx-btn btn-prim"
-                                    // onClick={ () => setMode( { new: true } ) }
+                                        onClick={ () => setMode( { new: true } ) }
                                     >
                                         <span className="bi bi-plus-circle me-2"></span>
                                         Add

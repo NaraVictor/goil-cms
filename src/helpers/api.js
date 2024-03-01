@@ -172,6 +172,10 @@ export const getAllCampaigns = async ( isLight ) => {
 	return qry?.data?.data;
 };
 
+export const postClaimReward = async ( data ) => {
+	return await postQuery( "campaigns/claim", data );
+};
+
 export const postNewCampaign = async ( data ) => {
 	return await postQuery( "campaigns", data );
 };

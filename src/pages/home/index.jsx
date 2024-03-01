@@ -117,8 +117,15 @@ const HomeIndex = ( props ) => {
                 <div className="col-md-3">
                     <p><strong>ACTION</strong></p>
                     <Tile
+                        isLink
                         isActive isAction title="SELL" icon="bi-basket"
                         url={ generateRoute( [ appLinks.sales.index, appLinks.sales.sell ] ) }
+                    />
+                    <Tile
+                        className="mt-2"
+                        isLink
+                        isAction title="CLAIM" icon="bi-gift"
+                        url={ generateRoute( [ appLinks.catalog.index, appLinks.catalog.claims ] ) }
                     />
                 </div>
                 <div className="col-md-6">
@@ -164,29 +171,29 @@ const HomeIndex = ( props ) => {
                     </div>
                 </div>
                 <div className="col-md-3">
-                    <p><strong>DESTINATIONS</strong></p>
+                    <p><strong>SHORTCUTS</strong></p>
                     <div className="row">
-                        <div className="mb-3 mb-md-0 col-md-6 col-12">
+                        <div className="col-12">
                             <Tile isAction title="sales" icon="bi-currency-dollar"
-                                url={ generateRoute( [ appLinks.catalog.index, appLinks.catalog.inventory ] ) }
+                                url={ generateRoute( [ appLinks.sales.index, appLinks.sales.history ] ) }
                             />
                         </div>
 
-                        <div className="mb-3 mb-md-0 col-md-6 col-12">
+                        {/* <div className="mb-3 mb-md-0 col-md-6 col-12">
                             <Tile isAction title="customers" icon="bi-people"
                                 url={ generateRoute( [ appLinks.catalog.index, appLinks.catalog.customers ] ) }
                             />
-                        </div>
-                        <div className="mb-3 mb-md-0 col-md-6 col-12">
-                            <Tile isAction title="campaigns" icon="bi-megaphone"
-                                url={ generateRoute( [ appLinks.catalog.index, appLinks.catalog.expenses ] ) }
+                        </div> */}
+                        <div className="col-12 mt-2">
+                            <Tile isAction title="campaigns" icon="bi-gift"
+                                url={ generateRoute( [ appLinks.catalog.index, appLinks.catalog.campaign ] ) }
                             />
                         </div>
-                        <div className="mb-3 mb-md-0 col-md-6 col-12">
+                        {/* <div className="mb-3 mb-md-0 col-md-6 col-12">
                             <Tile isAction title="claims" icon="bi-card-checklist"
                                 url={ generateRoute( [ appLinks.reports.index ] ) }
                             />
-                        </div>
+                        </div> */}
                     </div>
                 </div>
             </div>

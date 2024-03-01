@@ -152,7 +152,7 @@ export const isElectron = () => {
 export const generateRoute = ( paths ) => {
 	let path = "";
 
-	if ( _.isEmpty( path ) )
+	if ( _.isEmpty( paths ) )
 		return ""
 
 	paths.map( ( p ) => {
@@ -172,7 +172,7 @@ export const generateRoute = ( paths ) => {
  * @param {Array} suppliers list of product suppliers
  * @return {object} an error flag bool & messsage else the cleaned data
  */
-export const validateProduct = ( product, stocks, variants, suppliers ) => {
+export const validateItem = ( product, stocks, variants, suppliers ) => {
 	try {
 
 		let isError = false

@@ -398,6 +398,19 @@
   overflow: hidden;
 }
 
+.counter-component {
+  position: fixed;
+  display: block;
+  width: 80vw;
+  height: 20vh;
+  bottom: 0;
+}
+@media screen and (max-width: 600px) {
+  .counter-component {
+    width: 93vw;
+  }
+}
+
 * {
   margin: 0;
   box-sizing: content-box;
@@ -456,7 +469,7 @@
   top: 50;
 }
 .pos-teller .products-line {
-  max-height: 180px;
+  max-height: 250px;
   overflow: auto;
   overflow-x: hidden;
 }

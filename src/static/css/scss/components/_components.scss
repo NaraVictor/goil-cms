@@ -10,3 +10,15 @@
   height: 80px !important;
   overflow: hidden;
 }
+
+.counter-component {
+  position: fixed;
+  display: block;
+  width: 80vw;
+  height: 20vh;
+  bottom: 0;
+
+  @media screen and (max-width: 600px) {
+    width: 93vw;
+  }
+}

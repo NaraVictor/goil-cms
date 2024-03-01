@@ -1,15 +1,15 @@
 import { Divider, Typography, Input, Drawer, message, } from "antd";
 import { useState } from "react";
 import { PageHeader, SaveButton, SearchInput } from "../../components/shared";
-import NewCampaignForm from "./components/new-campaign";
-import EditCampaignForm from './components/edit-campaign'
+import NewClaimForm from "./components/new-claim";
+import EditClaimForm from './components/edit-claim'
 import smalltalk from 'smalltalk'
 import { Box, Modal, Paper } from "@mantine/core";
 import { deleteCampaign, getAllCampaigns, getAllProducts } from "../../helpers/api";
 import { useQuery } from "react-query";
 import { DataGrid } from "@mui/x-data-grid";
 
-const CampaignPage = ( props ) => {
+const ClaimsPage = ( props ) => {
     const [ filteredData, setFilteredData ] = useState( [] );
     const { Search } = Input;
     const [ mode, setMode ] = useState( {
@@ -63,40 +63,45 @@ const CampaignPage = ( props ) => {
 
         {
             field: 'id',
-            headerName: 'SN',
+            headerName: 'ID',
             sortable: true,
-            width: 70,
+            width: 100,
             renderCell: ( params ) => params.api.getRowIndexRelativeToVisibleRows( params.row.id ) + 1
         },
         {
             field: 'compaign_name',
-            headerName: 'Name',
+            headerName: 'Campaign',
             sortable: true,
-            width: 350,
+            width: 200,
             renderCell: ( { row } ) => 'campaign name'
         },
         {
-            field: 'start_date',
-            headerName: 'Start Date',
+            field: 'customer',
+            headerName: 'Customer',
             sortable: true,
-            // width: 130,
-            flex: 1,
+            width: 200,
             renderCell: ( { row } ) => 'date'
         },
         {
-            field: 'end_date',
-            headerName: 'End Date',
+            field: 'points',
+            headerName: 'Points',
             sortable: true,
-            // width: 100,
-            flex: 1,
+            width: 100,
             renderCell: ( { row } ) => 'date'
         },
         {
-            field: 'slot',
-            headerName: 'Slots',
+            field: 'status',
+            headerName: 'Status',
             sortable: true,
-            width: 130,
+            width: 100,
             renderCell: ( { row } ) => 'remaining/total'
+        },
+        {
+            field: 'handler',
+            headerName: 'Handler',
+            sortable: true,
+            width: 200,
+            renderCell: ( { row } ) => 'staff handling this claim'
         },
         {
             // headerName: 'Actions',
@@ -145,14 +150,14 @@ const CampaignPage = ( props ) => {
             {
                 mode.new ?
                     <Paper>
-                        <NewCampaignForm
+                        <NewClaimForm
                             onClose={ () => setMode( { new: false } ) }
                             onSuccess={ fetchCampaigns }
                         />
                     </Paper> :
                     mode.edit ?
                         <Paper>
-                            <EditCampaignForm
+                            <EditClaimForm
                                 canEdit={ true } //use permission here
                                 id={ mode.id }
                                 onUpdate={ fetchCampaigns }
@@ -162,8 +167,8 @@ const CampaignPage = ( props ) => {
                         :
                         <>
                             <PageHeader
-                                title="Campaigns"
-                                description="view, edit and add campaigns/promotions."
+                                title="Claims"
+                                description="view, edit and process campaign/promotion claims."
                                 metaData={ `${ filteredData.length }` }
                             />
                             {/* buttons */ }
@@ -171,7 +176,7 @@ const CampaignPage = ( props ) => {
                                 <div className="buttons has-addons">
                                     <button className="button bokx-btn btn-prim" onClick={ () => setMode( { new: true } ) }>
                                         <span className="bi bi-plus-circle me-2"></span>
-                                        Add <span className="d-none d-md-inline ms-2">Campaign</span>
+                                        Claim
                                     </button>
                                 </div>
                                 <SearchInput
@@ -185,6 +190,7 @@ const CampaignPage = ( props ) => {
                                     placeholder="search by name, category"
                                     autoFocus />
                             </div>
+                            {/* <p>showing x records</p> */ }
                             <Paper>
                                 <Box sx={ { height: 500, width: '100%' } }>
                                     <DataGrid
@@ -201,4 +207,4 @@ const CampaignPage = ( props ) => {
     );
 }
 
-export { CampaignPage };
+export { ClaimsPage };
